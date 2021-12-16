@@ -6,10 +6,11 @@ import SVG from 'react-inlinesvg'
 import discordSocialLogo from '../../images/discord-social-logo.svg'
 import openseaSocialLogo from '../../images/opensea-social-logo.svg'
 import sandboxMap from '../../images/sandbox-map.png'
-import ConnectWalletButton from '../ConnectWalletButton/ConnectWalletButton'
-import BrowserNotSupportedNotification from '../BrowserNotSupportedNotification/BrowserNotSupportedNotification'
-import WalletInfoPanel from '../WalletInfoPanel/WalletInfoPanel'
-import MintButton from '../MintButton/MintButton'
+// FIXME: Add this in later when minting is live.
+// import ConnectWalletButton from '../ConnectWalletButton/ConnectWalletButton'
+// import BrowserNotSupportedNotification from '../BrowserNotSupportedNotification/BrowserNotSupportedNotification'
+// import WalletInfoPanel from '../WalletInfoPanel/WalletInfoPanel'
+// import MintButton from '../MintButton/MintButton'
 
 const navigation = {
   social: [
@@ -117,6 +118,8 @@ function Header({
                         </span>{' '}
                       </h1>
                       <div className="flex flex-col items-center justify-center pt-12 mx-auto md:pt-8">
+                        {/* FIXME: Add this in later when minting is live. */}
+                        {/*
                         {!account && window.ethereum && (
                           <ConnectWalletButton
                             onConnected={onConnected}
@@ -145,6 +148,7 @@ function Header({
                             isBlockedByWhitelist={isBlockedByWhitelist}
                           />
                         )}
+                        */}
                       </div>
                     </div>
                   </div>
