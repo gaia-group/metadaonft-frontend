@@ -278,7 +278,7 @@ export default function MetaDaoNft() {
               <div className="flex mt-8 space-x-3">
                 <div className="inline-flex rounded-md shadow">
                   <a
-                    href="https://discord.gg/ZtQmm87wHf"
+                    href="https://discord.gg/2fkp7PPeyx"
                     className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-black bg-green-300 border border-transparent rounded-md hover:bg-green-500"
                   >
                     Discord
@@ -291,7 +291,7 @@ export default function MetaDaoNft() {
                 </div>
                 <div className="inline-flex rounded-md shadow">
                   <a
-                    href="https://discord.gg/ZtQmm87wHf"
+                    href="https://twitter.com/metadaonft"
                     className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-black bg-green-300 border border-transparent rounded-md hover:bg-green-500"
                   >
                     Twitter
