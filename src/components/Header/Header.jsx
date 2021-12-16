@@ -47,18 +47,20 @@ const navigation = {
   ],
 }
 
-function Header({
-  account,
-  onError,
-  onConnected,
-  ethBalance,
-  tokens,
-  networkId,
-  isPaused,
-  isWrongNetwork,
-  isBlockedByWhitelist,
-  contract,
-}) {
+// FIXME: Add this in later when minting is live.
+// function Header({
+//   account,
+//   onError,
+//   onConnected,
+//   ethBalance,
+//   tokens,
+//   networkId,
+//   isPaused,
+//   isWrongNetwork,
+//   isBlockedByWhitelist,
+//   contract,
+// }) {
+function Header() {
   return (
     <div className="relative overflow-hidden bg-black">
       <div className="mx-auto max-w-7xl">
