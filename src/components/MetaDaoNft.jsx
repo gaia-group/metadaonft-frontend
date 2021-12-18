@@ -27,7 +27,7 @@ const navigation = {
   social: [
     {
       name: 'Discord',
-      href: 'https://discord.gg/ZtQmm87wHf',
+      href: 'https://discord.gg/cfcnwggHGv',
       icon: (props) => (
         <SVG src={discordSocialLogo} title="Discord" {...props} />
       ),
@@ -41,7 +41,7 @@ const navigation = {
     },
     {
       name: 'Twitter',
-      href: 'https://twitter.com/meta-dao-nft',
+      href: 'https://twitter.com/metadaonft',
       icon: (props) => (
         <SVG src={twitterSocialLogo} title="Twitter" {...props} />
       ),
@@ -278,7 +278,7 @@ export default function MetaDaoNft() {
               <div className="flex mt-8 space-x-3">
                 <div className="inline-flex rounded-md shadow">
                   <a
-                    href="https://discord.gg/2fkp7PPeyx"
+                    href="https://discord.gg/cfcnwggHGv"
                     className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-black bg-green-300 border border-transparent rounded-md hover:bg-green-500"
                   >
                     Discord
@@ -372,7 +372,7 @@ export default function MetaDaoNft() {
               <div className="mt-8">
                 <div className="inline-flex rounded-md shadow">
                   <a
-                    href="https://discord.gg/ZtQmm87wHf"
+                    href="https://discord.gg/cfcnwggHGv"
                     className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-black bg-green-300 border border-transparent rounded-md hover:bg-green-500"
                   >
                     Go to OpenSea
