@@ -4,7 +4,7 @@ import classNames from 'classnames'
 
 const steps = [
   {
-    name: 'Q4 2021',
+    name: 'Q1 2022',
     description: (
       <ul className="py-1 ml-1 space-y-3">
         <li>Launch the Gen-0 NFT to fund land purchases</li>
@@ -23,7 +23,7 @@ const steps = [
     status: 'current',
   },
   {
-    name: 'Q1 2022',
+    name: 'Q2 2022',
     description: (
       <ul className="py-1 ml-1 space-y-3">
         <li>
@@ -40,7 +40,7 @@ const steps = [
     status: 'upcoming',
   },
   {
-    name: 'Q2 2022',
+    name: 'Q3 2022',
     description: (
       <ul className="py-1 ml-1 space-y-3">
         <li>Launch Gen-1 NFT to fund next purchase</li>
@@ -64,7 +64,7 @@ const steps = [
     status: 'upcoming',
   },
   {
-    name: 'Q3 2022',
+    name: 'Q4 2022',
     description: (
       <ul className="py-1 ml-1 space-y-3">
         <li>Launch Gen-2 NFT to fund next purchase</li>
