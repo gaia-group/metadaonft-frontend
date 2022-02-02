@@ -5,7 +5,6 @@ import SVG from 'react-inlinesvg'
 // import etherscanSocialLogo from '../../images/etherscan-social-logo.svg'
 import discordSocialLogo from '../../images/discord-social-logo.svg'
 import openseaSocialLogo from '../../images/opensea-social-logo.svg'
-import sandboxMap from '../../images/sandbox-map.png'
 // FIXME: Add this in later when minting is live.
 // import ConnectWalletButton from '../ConnectWalletButton/ConnectWalletButton'
 // import BrowserNotSupportedNotification from '../BrowserNotSupportedNotification/BrowserNotSupportedNotification'
