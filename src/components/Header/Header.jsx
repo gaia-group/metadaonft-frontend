@@ -99,24 +99,16 @@ function Header() {
           <main className="pt-4">
             <div>
               <div className="relative">
-                <div className="absolute inset-x-0 bottom-0 bg-gray-900 h-1/2" />
+                <div className="absolute inset-x-0 bottom-0 bg-black h-1/2" />
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                   <div className="relative shadow-xl sm:overflow-hidden">
-                    <div className="absolute inset-0">
-                      <img
-                        className="object-cover w-full h-full brightness-75 saturate-[25%]"
-                        src={sandboxMap}
-                        alt="People working on laptops"
-                      />
-                      <div className="absolute inset-0 bg-green-700 mix-blend-multiply" />
-                    </div>
                     <div className="relative px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8">
                       <h1 className="text-4xl font-extrabold tracking-tight text-center sm:text-5xl lg:text-6xl text-stroke-black">
                         <span className="inline text-green-300 sm:block">
                           Making it easy to
                         </span>{' '}
                         <span className="inline text-white drop-shadow-xl sm:block text-stroke-black">
-                          build inside the metaverse
+                          build inside metaverse spaces
                         </span>{' '}
                       </h1>
                       <div className="flex flex-col items-center justify-center pt-12 mx-auto md:pt-8">
