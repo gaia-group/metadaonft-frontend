@@ -169,6 +169,36 @@ export default function MetaDaoNft() {
               {', '}
               we unveil how you bring your collectible to life.
             </p>
+            <div className="space-y-2 sm:space-y-4 pt-6 sm:pt-10">
+              <p className="text-gray-200 sm:text-lg text-base">
+                Giving people tools to own and access digital goods and property
+                is crucial in this next phase of the internet.
+              </p>
+
+              <p className="text-gray-200 sm:text-lg text-base">
+                Our first product is a collectible artwork that you can treasure
+                on the blockchain forever. This collectible may be the first
+                piece of digital property that you truly own.
+              </p>
+
+              <p className="text-gray-200 sm:text-lg text-base">
+                This collectible represents a unique plot of land in an
+                impossible universe. A universe waiting to be created and
+                explored.
+              </p>
+
+              <p className="text-gray-200 sm:text-lg text-base">
+                It also gives you access to future product launches – products
+                that will enable you to build your own unique experiences
+                easily, and that bridge the gap between your physical and
+                digital spaces.{' '}
+              </p>
+
+              <p className="text-gray-200 sm:text-lg text-base">
+                Our next product will work with our first collectible to achieve
+                this mission, and will be unveiled in Q2 of 2022.
+              </p>
+            </div>
           </div>
         </div>
 
