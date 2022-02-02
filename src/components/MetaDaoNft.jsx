@@ -162,12 +162,12 @@ export default function MetaDaoNft() {
             <p className="text-lg text-left text-gray-200 sm:text-2xl">
               <span className="font-extrabold text-green-300">First</span>
               {', '}
-              we sell all 10,000 digital collectibles as NFTs.
+              sell 10,000 NFT collectibles.
             </p>
             <p className="text-lg text-left text-gray-200 sm:text-2xl">
               <span className="font-extrabold text-green-300">Next</span>
               {', '}
-              we unveil how you bring your collectible to life.
+              bring your collectible to life.
             </p>
             <div className="space-y-2 sm:space-y-4 pt-6 sm:pt-10">
               <p className="text-gray-200 sm:text-lg text-base">
