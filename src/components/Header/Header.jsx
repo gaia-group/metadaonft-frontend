@@ -113,10 +113,10 @@ function Header() {
                     <div className="relative px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8">
                       <h1 className="text-4xl font-extrabold tracking-tight text-center sm:text-5xl lg:text-6xl text-stroke-black">
                         <span className="inline text-green-300 sm:block">
-                          Own the most exclusive
+                          Making it easy to
                         </span>{' '}
                         <span className="inline text-white drop-shadow-xl sm:block text-stroke-black">
-                          metaverse real estate
+                          build inside the metaverse
                         </span>{' '}
                       </h1>
                       <div className="flex flex-col items-center justify-center pt-12 mx-auto md:pt-8">
