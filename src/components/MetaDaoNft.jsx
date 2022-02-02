@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { ExternalLinkIcon } from '@heroicons/react/solid'
 import SVG from 'react-inlinesvg'
 
 // We'll use ethers to interact with the Ethereum network and our contract
@@ -19,7 +18,6 @@ import discordSocialLogo from '../images/discord-social-logo.svg'
 import openseaSocialLogo from '../images/opensea-social-logo.svg'
 import twitterSocialLogo from '../images/twitter-social-logo.svg'
 import Header from './Header/Header'
-import Roadmap from './Roadmap/Roadmap'
 import FAQ from './FAQ/FAQ'
 import { getWhitelistParams } from '../utilities/merkleTrees'
 
@@ -156,100 +154,21 @@ export default function MetaDaoNft() {
           isBlockedByWhitelist={isBlockedByWhitelist}
           contract={contract}
         />
-        <div className="pb-12 bg-gray-900">
-          <div className="max-w-3xl px-4 py-16 mx-auto space-y-12 sm:px-6 lg:px-8">
-            <h2 className="text-4xl font-bold text-white sm:text-5xl">
-              Enter the{' '}
-              <span className="block tracking-tight text-green-300 sm:inline">
-                <span className="font-bold">Meta</span>{' '}
-                <span className="font-extrabold">DAO</span>
-              </span>
-            </h2>
-            <section className="mx-auto space-y-10 text-lg text-left text-gray-200 sm:text-2xl">
-              <p>
-                The Meta{' '}
-                <a
-                  href="https://www.investopedia.com/tech/what-dao/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-green-300 hover:text-green-400"
-                >
-                  DAO
-                  <ExternalLinkIcon
-                    className="inline w-5 h-5 mb-1"
-                    aria-hidden="true"
-                  />
-                </a>{' '}
-                is a 10,000 NFT collection.
-              </p>
-              <p>
-                Your NFT is your membership card and gives you voting rights in
-                the DAO.
-              </p>
-            </section>
-          </div>
-        </div>
-        <div className="bg-black">
-          <div className="max-w-3xl px-4 pt-16 mx-auto space-y-12 sm:px-6 lg:px-8 lg:py-16">
-            <div className="max-w-3xl pt-16 mx-auto space-y-12 text-left">
-              <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-                How the DAO works
-              </h2>
-              <section className="pb-16 mx-auto space-y-6 text-lg text-left text-gray-200 sm:space-y-2 sm:text-2xl">
-                <p>
-                  Purchasing and reselling Meta DAO NFTs{' '}
-                  <span className="font-extrabold text-green-300">
-                    generates ETH
-                  </span>
-                  .
-                </p>
-                <p>
-                  <span className="font-extrabold text-green-300">75%</span> of
-                  that ETH goes into the DAO wallet.
-                </p>
-                <p>
-                  That ETH funds metaverse{' '}
-                  <span className="font-extrabold text-green-300">
-                    real estate deals
-                  </span>
-                  .
-                </p>
-                <p>
-                  NFT holders{' '}
-                  <span className="font-extrabold text-green-300">vote</span> on
-                  what the DAO buys.
-                </p>
-                <p>
-                  NFT holders claim{' '}
-                  <span className="font-extrabold text-green-300">
-                    $GAIA tokens
-                  </span>{' '}
-                  for their land ownership.
-                </p>
-              </section>
-            </div>
-          </div>
-        </div>
         <div className="flex flex-col items-center justify-center mx-auto bg-gray-900 md:flex-row">
           <div className="order-last w-full max-w-3xl px-4 py-12 border-gray-700 md:order-first sm:px-6 lg:px-8 lg:py-16">
-            <p className="text-base font-semibold tracking-wider text-center text-gray-400 uppercase sm:text-xl">
-              Early members are rewarded
-            </p>
-            <h2 className="py-8 mt-2 text-3xl font-extrabold tracking-tight text-center text-gray-200 sm:text-4xl">
+            <h2 className="py-8 mt-2 text-3xl font-extrabold tracking-tight text-left text-gray-200 sm:text-4xl">
               The Roadmap
             </h2>
-            <p className="text-lg text-center text-gray-200 sm:text-2xl">
-              <span className="font-extrabold text-green-300">Fewer $GAIA</span>{' '}
-              is generated for each generation.
+            <p className="text-lg text-left text-gray-200 sm:text-2xl">
+              <span className="font-extrabold text-green-300">First</span>
+              {', '}
+              we sell all 10,000 digital collectibles as NFTs.
             </p>
-            <p className="pb-8 text-lg text-center text-gray-200 sm:text-2xl">
-              $GAIA becomes{' '}
-              <span className="font-extrabold text-green-300">
-                more valuable
-              </span>{' '}
-              compared to land backing it.
+            <p className="text-lg text-left text-gray-200 sm:text-2xl">
+              <span className="font-extrabold text-green-300">Next</span>
+              {', '}
+              we unveil how you bring your collectible to life.
             </p>
-            <Roadmap />
           </div>
         </div>
 
