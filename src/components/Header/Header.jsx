@@ -102,7 +102,7 @@ function Header() {
                 <div className="absolute inset-x-0 bottom-0 bg-black h-1/2" />
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                   <div className="relative shadow-xl sm:overflow-hidden">
-                    <div className="relative px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8">
+                    <div className="relative px-4 py-8 sm:px-6 sm:py-10 lg:py-12 lg:px-8">
                       <h1 className="text-4xl font-extrabold tracking-tight text-center sm:text-5xl lg:text-6xl text-stroke-black">
                         <span className="inline text-green-300 sm:block">
                           Making it easy to
@@ -111,9 +111,9 @@ function Header() {
                           build inside the metaverse
                         </span>{' '}
                       </h1>
-                      <div className="flex flex-col items-center justify-center pt-12 mx-auto md:pt-8">
-                        {/* FIXME: Add this in later when minting is live. */}
-                        {/*
+                      {/* FIXME: Add this in later when minting is live. */}
+                      {/* <div className="flex flex-col items-center justify-center pt-12 mx-auto md:pt-8"> */}
+                      {/*
                         {!account && window.ethereum && (
                           <ConnectWalletButton
                             onConnected={onConnected}
@@ -142,8 +142,9 @@ function Header() {
                             isBlockedByWhitelist={isBlockedByWhitelist}
                           />
                         )}
-                        */}
+
                       </div>
+                      */}
                     </div>
                   </div>
                 </div>
