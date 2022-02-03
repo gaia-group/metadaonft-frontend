@@ -26,18 +26,19 @@ const navigation = {
   social: [
     {
       name: 'Discord',
-      href: 'https://discord.gg/cfcnwggHGv',
+      href: 'https://discord.gg/bKtJ2nC2Rk',
       icon: (props) => (
         <SVG src={discordSocialLogo} title="Discord" {...props} />
       ),
     },
-    {
-      name: 'OpenSea',
-      href: 'https://opensea.io/meta-dao-nft',
-      icon: (props) => (
-        <SVG src={openseaSocialLogo} title="OpenSea" {...props} />
-      ),
-    },
+    // FIXME: Uncomment when we go live.
+    // {
+    //   name: 'OpenSea',
+    //   href: 'https://opensea.io/meta-dao-nft',
+    //   icon: (props) => (
+    //     <SVG src={openseaSocialLogo} title="OpenSea" {...props} />
+    //   ),
+    // },
     {
       name: 'Twitter',
       href: 'https://twitter.com/metadaonft',
@@ -229,7 +230,7 @@ export default function MetaDaoNft() {
               <div className="flex mt-8 space-x-3">
                 <div className="inline-flex rounded-md shadow">
                   <a
-                    href="https://discord.gg/cfcnwggHGv"
+                    href="https://discord.gg/bKtJ2nC2Rk"
                     className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-black bg-green-300 border border-transparent rounded-md hover:bg-green-500"
                   >
                     Discord
@@ -323,7 +324,7 @@ export default function MetaDaoNft() {
               <div className="mt-8">
                 <div className="inline-flex rounded-md shadow">
                   <a
-                    href="https://discord.gg/cfcnwggHGv"
+                    href="https://discord.gg/bKtJ2nC2Rk"
                     className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-black bg-green-300 border border-transparent rounded-md hover:bg-green-500"
                   >
                     Go to OpenSea
