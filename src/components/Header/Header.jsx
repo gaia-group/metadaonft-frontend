@@ -108,7 +108,7 @@ function Header() {
                           Making it easy to
                         </span>{' '}
                         <span className="inline text-white drop-shadow-xl sm:block text-stroke-black">
-                          build inside metaverse spaces
+                          build inside the metaverse
                         </span>{' '}
                       </h1>
                       <div className="flex flex-col items-center justify-center pt-12 mx-auto md:pt-8">
