@@ -323,6 +323,14 @@ export default function MetaDaoNft() {
               </p>
               <div className="mt-8">
                 <div className="inline-flex rounded-md shadow">
+                  <button
+                    disabled
+                    className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-gray-800 bg-gray-400 border border-transparent rounded-md cursor-not-allowed"
+                  >
+                    Coming soon...
+                  </button>
+                  {/*
+                  FIXME: Uncomment when minting is live.
                   <a
                     href="https://discord.gg/bKtJ2nC2Rk"
                     className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-black bg-green-300 border border-transparent rounded-md hover:bg-green-500"
@@ -333,7 +341,7 @@ export default function MetaDaoNft() {
                       title="OpenSea"
                       className="w-5 h-5 ml-2 fill-current"
                     />
-                  </a>
+                  </a> */}
                 </div>
               </div>
             </div>
