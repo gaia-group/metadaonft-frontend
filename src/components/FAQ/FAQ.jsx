@@ -38,8 +38,7 @@ const faqs = [
   {
     id: count++,
     question: 'How many Meta DAO NFTs can we mint?',
-    answer:
-      '1 per wallet during the whitelist sale. 2 per wallet during the public sale.',
+    answer: '2 per wallet.',
   },
   {
     id: count++,
