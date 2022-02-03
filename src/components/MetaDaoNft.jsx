@@ -165,7 +165,7 @@ export default function MetaDaoNft() {
             <p className="text-lg text-left text-gray-200 sm:text-2xl">
               <span className="font-extrabold text-green-300">First</span>
               {', '}
-              sell 10,000 NFT collectibles.
+              sell 5,555 NFT collectibles.
             </p>
             <p className="text-lg text-left text-gray-200 sm:text-2xl">
               <span className="font-extrabold text-green-300">Next</span>
