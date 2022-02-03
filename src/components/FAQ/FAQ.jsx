@@ -33,7 +33,7 @@ const faqs = [
   {
     id: count++,
     question: 'How much does it cost to mint a Meta DAO NFT?',
-    answer: '0.08 ETH',
+    answer: '0.088 ETH',
   },
   {
     id: count++,
