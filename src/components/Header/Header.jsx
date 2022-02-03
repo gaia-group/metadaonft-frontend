@@ -4,8 +4,8 @@ import SVG from 'react-inlinesvg'
 
 // import etherscanSocialLogo from '../../images/etherscan-social-logo.svg'
 import discordSocialLogo from '../../images/discord-social-logo.svg'
-import openseaSocialLogo from '../../images/opensea-social-logo.svg'
 // FIXME: Add this in later when minting is live.
+// import openseaSocialLogo from '../../images/opensea-social-logo.svg'
 // import ConnectWalletButton from '../ConnectWalletButton/ConnectWalletButton'
 // import BrowserNotSupportedNotification from '../BrowserNotSupportedNotification/BrowserNotSupportedNotification'
 // import WalletInfoPanel from '../WalletInfoPanel/WalletInfoPanel'
