@@ -64,6 +64,7 @@ function Header({
   networkId,
   isWrongNetwork,
   isBlockedByWhitelist,
+  isPublicMintingAllowed,
   contract,
 }) {
   return (
@@ -183,6 +184,9 @@ function Header({
                                     contract={contract}
                                     isWrongNetwork={isWrongNetwork}
                                     isBlockedByWhitelist={isBlockedByWhitelist}
+                                    isPublicMintingAllowed={
+                                      isPublicMintingAllowed
+                                    }
                                   />
                                 )}
                               </div>
@@ -213,6 +217,7 @@ Header.propTypes = {
   networkId: PropTypes.string,
   isWrongNetwork: PropTypes.bool,
   isBlockedByWhitelist: PropTypes.bool,
+  isPublicMintingAllowed: PropTypes.bool,
   contract: PropTypes.object,
 }
 

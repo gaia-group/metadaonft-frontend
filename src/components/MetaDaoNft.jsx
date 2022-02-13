@@ -65,6 +65,7 @@ export default function MetaDaoNft() {
   const [errors, setErrors] = useState([])
   const [isWrongNetwork, setIsWrongNetwork] = useState(false)
   const [isBlockedByWhitelist, setIsBlockedByWhitelist] = useState(true)
+  const [isPublicMintingAllowed, setIsPublicMintingAllowed] = useState(false)
 
   useEffect(() => {
     if (!window.ethereum) return
@@ -114,6 +115,7 @@ export default function MetaDaoNft() {
             )
             setTokens(array)
             setContract(contract)
+            setIsPublicMintingAllowed(isPublicMintingAllowed)
             setIsBlockedByWhitelist(
               !isPublicMintingAllowed && !isUserWhitelisted
             )
@@ -149,6 +151,7 @@ export default function MetaDaoNft() {
           networkId={networkId}
           isWrongNetwork={isWrongNetwork}
           isBlockedByWhitelist={isBlockedByWhitelist}
+          isPublicMintingAllowed={isPublicMintingAllowed}
           contract={contract}
         />
         <ArtShowcase />
