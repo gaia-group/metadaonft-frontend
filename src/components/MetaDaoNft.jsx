@@ -61,7 +61,6 @@ export default function MetaDaoNft() {
   const [account, setAccount] = useState(null)
   const [ethBalance, setEthBalance] = useState(null)
   const [contract, setContract] = useState(null)
-  const [isPaused, setIsPaused] = useState(true)
   const [tokens, setTokens] = useState([])
   const [errors, setErrors] = useState([])
   const [isWrongNetwork, setIsWrongNetwork] = useState(false)
@@ -94,7 +93,6 @@ export default function MetaDaoNft() {
               TokenArtifact.abi,
               newProvider.getSigner()
             )
-            const isPaused = await contract.paused()
             const isPublicMintingAllowed =
               await contract.isPublicMintingAllowed()
             const { proof, positions } = getWhitelistParams(account)
@@ -115,7 +113,6 @@ export default function MetaDaoNft() {
               })
             )
             setTokens(array)
-            setIsPaused(isPaused)
             setContract(contract)
             setIsBlockedByWhitelist(
               !isPublicMintingAllowed && !isUserWhitelisted
@@ -124,7 +121,6 @@ export default function MetaDaoNft() {
           setIsWrongNetwork(isWrongNetwork)
         } else {
           setContract(null)
-          setIsPaused(false)
           setIsWrongNetwork(false)
         }
       } catch (err) {
@@ -151,7 +147,6 @@ export default function MetaDaoNft() {
           ethBalance={ethBalance}
           tokens={tokens}
           networkId={networkId}
-          isPaused={isPaused}
           isWrongNetwork={isWrongNetwork}
           isBlockedByWhitelist={isBlockedByWhitelist}
           contract={contract}

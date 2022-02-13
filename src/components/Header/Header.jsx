@@ -1,15 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import SVG from 'react-inlinesvg'
+import Countdown from 'react-countdown'
+import { DateTime } from 'luxon'
+import pluralize from 'pluralize'
 
-// import etherscanSocialLogo from '../../images/etherscan-social-logo.svg'
 import discordSocialLogo from '../../images/discord-social-logo.svg'
-// FIXME: Add this in later when minting is live.
+// FIXME: Add this in later when contract is deployed
+// import etherscanSocialLogo from '../../images/etherscan-social-logo.svg'
 // import openseaSocialLogo from '../../images/opensea-social-logo.svg'
-// import ConnectWalletButton from '../ConnectWalletButton/ConnectWalletButton'
-// import BrowserNotSupportedNotification from '../BrowserNotSupportedNotification/BrowserNotSupportedNotification'
-// import WalletInfoPanel from '../WalletInfoPanel/WalletInfoPanel'
-// import MintButton from '../MintButton/MintButton'
+import ConnectWalletButton from '../ConnectWalletButton/ConnectWalletButton'
+import BrowserNotSupportedNotification from '../BrowserNotSupportedNotification/BrowserNotSupportedNotification'
+import WalletInfoPanel from '../WalletInfoPanel/WalletInfoPanel'
+import MintButton from '../MintButton/MintButton'
 
 const navigation = {
   social: [
@@ -47,20 +50,22 @@ const navigation = {
   ],
 }
 
-// FIXME: Add this in later when minting is live.
-// function Header({
-//   account,
-//   onError,
-//   onConnected,
-//   ethBalance,
-//   tokens,
-//   networkId,
-//   isPaused,
-//   isWrongNetwork,
-//   isBlockedByWhitelist,
-//   contract,
-// }) {
-function Header() {
+const LAUNCH_DATETIME = DateTime.fromObject(
+  { month: 2, year: 2021, day: 13, hour: 18 },
+  { zone: 'America/New_York' }
+).setZone()
+
+function Header({
+  account,
+  onError,
+  onConnected,
+  ethBalance,
+  tokens,
+  networkId,
+  isWrongNetwork,
+  isBlockedByWhitelist,
+  contract,
+}) {
   return (
     <div className="relative overflow-hidden bg-black">
       <div className="mx-auto max-w-7xl">
@@ -111,40 +116,80 @@ function Header() {
                           build inside the metaverse
                         </span>{' '}
                       </h1>
-                      {/* FIXME: Add this in later when minting is live. */}
-                      {/* <div className="flex flex-col items-center justify-center pt-12 mx-auto md:pt-8"> */}
-                      {/*
-                        {!account && window.ethereum && (
-                          <ConnectWalletButton
-                            onConnected={onConnected}
-                            onError={onError}
-                          />
-                        )}
-                        {!window.ethereum && (
-                          <BrowserNotSupportedNotification />
-                        )}
-                        {!!account && (
-                          <WalletInfoPanel
-                            account={account}
-                            ethBalance={ethBalance}
-                            tokens={tokens}
-                            networkId={networkId}
-                          />
-                        )}
-                        {!!account && (
-                          <MintButton
-                            onError={onError}
-                            account={account}
-                            ethBalance={ethBalance}
-                            contract={contract}
-                            isPaused={isPaused}
-                            isWrongNetwork={isWrongNetwork}
-                            isBlockedByWhitelist={isBlockedByWhitelist}
-                          />
-                        )}
-
-                      </div>
-                      */}
+                      <Countdown
+                        date={LAUNCH_DATETIME.valueOf()}
+                        renderer={({
+                          days,
+                          hours,
+                          minutes,
+                          seconds,
+                          completed,
+                        }) => {
+                          if (!completed && days > 0) {
+                            return (
+                              <h2 className="text-xl text-white font-extrabold tracking-tight text-center sm:text-2xl lg:text-3xl text-stroke-black pt-10">
+                                <p>
+                                  Minting starts in{' '}
+                                  <span className="text-green-300">
+                                    {pluralize('day', days, true)}
+                                  </span>{' '}
+                                  on{' '}
+                                </p>
+                                <p>
+                                  {LAUNCH_DATETIME.toLocaleString(
+                                    DateTime.DATETIME_FULL
+                                  )}
+                                </p>
+                              </h2>
+                            )
+                          } else if (!completed && days === 0) {
+                            return (
+                              <h2 className="text-xl text-white font-extrabold tracking-tight text-center sm:text-2xl lg:text-3xl text-stroke-black pt-10">
+                                <p>Minting starts in</p>
+                                <p className="tracking-wider text-green-300">
+                                  {hours ? `${hours}:` : null}
+                                  {hours
+                                    ? String(minutes).padStart(2, '0')
+                                    : minutes}
+                                  :{String(seconds).padStart(2, '0')}
+                                </p>
+                              </h2>
+                            )
+                          } else {
+                            return (
+                              <div className="flex flex-col items-center justify-center pt-12 mx-auto md:pt-8">
+                                {!account && window.ethereum && (
+                                  <ConnectWalletButton
+                                    onConnected={onConnected}
+                                    onError={onError}
+                                  />
+                                )}
+                                {!window.ethereum && (
+                                  <BrowserNotSupportedNotification />
+                                )}
+                                {!!account && (
+                                  <WalletInfoPanel
+                                    account={account}
+                                    ethBalance={ethBalance}
+                                    tokens={tokens}
+                                    networkId={networkId}
+                                  />
+                                )}
+                                {!!account && (
+                                  <MintButton
+                                    onError={onError}
+                                    account={account}
+                                    ethBalance={ethBalance}
+                                    contract={contract}
+                                    isWrongNetwork={isWrongNetwork}
+                                    isBlockedByWhitelist={isBlockedByWhitelist}
+                                  />
+                                )}
+                              </div>
+                            )
+                          }
+                        }}
+                      />
                     </div>
                   </div>
                 </div>
@@ -166,7 +211,6 @@ Header.propTypes = {
   ethBalance: PropTypes.string,
   tokens: PropTypes.array,
   networkId: PropTypes.string,
-  isPaused: PropTypes.bool,
   isWrongNetwork: PropTypes.bool,
   isBlockedByWhitelist: PropTypes.bool,
   contract: PropTypes.object,

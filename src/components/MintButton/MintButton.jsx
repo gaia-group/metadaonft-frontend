@@ -5,10 +5,11 @@ import { getWhitelistParams } from '../../utilities/merkleTrees'
 
 import Button from '../Button/Button'
 
+const MINT_PRICE = 0.04
+
 function MintButton({
   onError,
   ethBalance,
-  isPaused,
   contract,
   isWrongNetwork,
   isBlockedByWhitelist,
@@ -16,9 +17,8 @@ function MintButton({
 }) {
   function errorMessage() {
     if (isWrongNetwork) return '(on wrong network)'
-    if (isPaused) return '(minting is paused)'
     if (isBlockedByWhitelist) return '(whitelist required to mint)'
-    if (!isPaused && parseFloat(ethBalance) < 0.2) {
+    if (parseFloat(ethBalance) < MINT_PRICE) {
       return '(not enough ETH in wallet)'
     }
   }
@@ -26,7 +26,7 @@ function MintButton({
   async function handleClick() {
     try {
       const { proof, positions } = getWhitelistParams(account)
-      const value = ethers.utils.parseEther('0.2')
+      const value = ethers.utils.parseEther(MINT_PRICE.toString())
       await contract.mint(account, 1, proof, positions, { value })
     } catch (err) {
       onError(err)
@@ -37,13 +37,12 @@ function MintButton({
     <div className="flex flex-col items-center space-y-1">
       <Button
         disabled={
-          parseFloat(ethBalance) < 0.2 ||
-          isPaused ||
+          parseFloat(ethBalance) < MINT_PRICE ||
           isWrongNetwork ||
           isBlockedByWhitelist
         }
         onClick={handleClick}
-        label="Mint for 0.2 ETH"
+        label={`Mint for ${MINT_PRICE} ETH`}
         shadow
       />
       {errorMessage && (
@@ -58,7 +57,6 @@ MintButton.defaultProps = {
   account: '',
   ethBalance: '',
   contract: '',
-  isPaused: false,
   isWrongNetwork: false,
   isBlockedByWhitelist: true,
 }
@@ -68,7 +66,6 @@ MintButton.propTypes = {
   account: PropTypes.string,
   ethBalance: PropTypes.string,
   contract: PropTypes.string,
-  isPaused: PropTypes.bool,
   isWrongNetwork: PropTypes.bool,
   isBlockedByWhitelist: PropTypes.bool,
 }
