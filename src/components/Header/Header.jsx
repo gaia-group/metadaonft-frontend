@@ -65,14 +65,15 @@ function Header({
   isWrongNetwork,
   isBlockedByWhitelist,
   isPublicMintingAllowed,
+  totalSupply,
   contract,
 }) {
   const [lastRecordedTime, setLastRecordedTime] = useState(null)
 
   useEffect(() => {
-    // Wait for previous request to complete before fetching next one.
-    let safeToFetch = true
-    const timingInterval = setInterval(async () => {
+    async function getTime() {
+      // Wait for previous request to complete before fetching next one.
+      let safeToFetch = true
       if (!safeToFetch) return
 
       try {
@@ -87,10 +88,13 @@ function Header({
         console.error('failed to fetch time') // eslint-disable-line no-console
       }
       safeToFetch = true
-    }, 1)
+    }
+
+    getTime() // Fetch it first to avoid waiting 1 sec for interval to kick in
+    const timingInterval = setInterval(getTime, 1000)
 
     return () => clearInterval(timingInterval)
-  }, [lastRecordedTime])
+  }, [])
 
   return (
     <div className="relative overflow-hidden bg-black">
@@ -194,38 +198,47 @@ function Header({
                             )
                           } else {
                             return (
-                              <div className="flex flex-col items-center justify-center pt-12 mx-auto md:pt-8">
-                                {!account && window.ethereum && (
-                                  <ConnectWalletButton
-                                    onConnected={onConnected}
-                                    onError={onError}
-                                  />
-                                )}
-                                {!window.ethereum && (
-                                  <BrowserNotSupportedNotification />
-                                )}
-                                {!!account && (
-                                  <WalletInfoPanel
-                                    account={account}
-                                    ethBalance={ethBalance}
-                                    tokens={tokens}
-                                    networkId={networkId}
-                                  />
-                                )}
-                                {!!account && (
-                                  <MintButton
-                                    onError={onError}
-                                    account={account}
-                                    ethBalance={ethBalance}
-                                    contract={contract}
-                                    isWrongNetwork={isWrongNetwork}
-                                    isBlockedByWhitelist={isBlockedByWhitelist}
-                                    isPublicMintingAllowed={
-                                      isPublicMintingAllowed
-                                    }
-                                  />
-                                )}
-                              </div>
+                              <>
+                                <h2 className="text-xl text-white font-extrabold tracking-tight text-center sm:text-2xl lg:text-3xl text-stroke-black pt-10">
+                                  <p className="tracking-wider text-green-300">
+                                    {totalSupply}/4444 minted
+                                  </p>
+                                </h2>
+                                <div className="flex flex-col items-center justify-center pt-8 mx-auto">
+                                  {!account && window.ethereum && (
+                                    <ConnectWalletButton
+                                      onConnected={onConnected}
+                                      onError={onError}
+                                    />
+                                  )}
+                                  {!window.ethereum && (
+                                    <BrowserNotSupportedNotification />
+                                  )}
+                                  {!!account && (
+                                    <WalletInfoPanel
+                                      account={account}
+                                      ethBalance={ethBalance}
+                                      tokens={tokens}
+                                      networkId={networkId}
+                                    />
+                                  )}
+                                  {!!account && (
+                                    <MintButton
+                                      onError={onError}
+                                      account={account}
+                                      ethBalance={ethBalance}
+                                      contract={contract}
+                                      isWrongNetwork={isWrongNetwork}
+                                      isBlockedByWhitelist={
+                                        isBlockedByWhitelist
+                                      }
+                                      isPublicMintingAllowed={
+                                        isPublicMintingAllowed
+                                      }
+                                    />
+                                  )}
+                                </div>
+                              </>
                             )
                           }
                         }}
@@ -254,6 +267,7 @@ Header.propTypes = {
   isWrongNetwork: PropTypes.bool,
   isBlockedByWhitelist: PropTypes.bool,
   isPublicMintingAllowed: PropTypes.bool,
+  totalSupply: PropTypes.string,
   contract: PropTypes.object,
 }
 

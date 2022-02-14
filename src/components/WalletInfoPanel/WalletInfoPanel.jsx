@@ -58,8 +58,8 @@ WalletInfoPanel.defaultProps = {
 WalletInfoPanel.propTypes = {
   account: PropTypes.string,
   ethBalance: PropTypes.string,
-  tokens: PropTypes.string,
-  networkId: PropTypes.string,
+  tokens: PropTypes.array,
+  networkId: PropTypes.number,
 }
 
 export default WalletInfoPanel
