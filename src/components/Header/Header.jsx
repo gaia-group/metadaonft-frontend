@@ -51,7 +51,7 @@ const navigation = {
 }
 
 const LAUNCH_DATETIME = DateTime.fromObject(
-  { month: 2, year: 2022, day: 15, hour: 20 },
+  { month: 2, year: 2022, day: 16, hour: 18 },
   { zone: 'America/New_York' }
 ).setZone()
 
@@ -158,7 +158,11 @@ function Header({
                         }) => {
                           if (!lastRecordedTime || days > 5) {
                             // Date still being fetched from server. Place spacer.
-                            return <div className="h-32"></div>
+                            return (
+                              <h2 className="text-xl text-white font-extrabold tracking-tight text-center sm:text-2xl lg:text-3xl text-stroke-black pt-10 h-32">
+                                Loading...
+                              </h2>
+                            )
                           } else if (!completed && days > 0) {
                             return (
                               <h2 className="text-xl text-white font-extrabold tracking-tight text-center sm:text-2xl lg:text-3xl text-stroke-black pt-10">
