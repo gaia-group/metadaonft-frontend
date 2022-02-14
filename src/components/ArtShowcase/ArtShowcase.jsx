@@ -65,7 +65,7 @@ function ArtShowcase() {
               <div className="absolute flex px-2 space-x-4 min-w-screen-xl sm:px-4 lg:px-6">
                 {categories.map((category) => (
                   <div
-                    key={category.imgSrc}
+                    key={category.id}
                     className="relative group flex flex-col w-80 overflow-hidden rounded-lg h-80"
                   >
                     <span aria-hidden="true" className="absolute inset-0">
