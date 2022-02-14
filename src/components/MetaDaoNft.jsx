@@ -220,7 +220,8 @@ export default function MetaDaoNft() {
             ))}
           </div>
           <p className="py-5 text-center text-gray-300">
-            All Rights Reserved © Meta DAO by Gaia Group 2021
+            All Rights Reserved © Meta DAO by Gaia Group{' '}
+            {new Date().getFullYear()}
           </p>
         </footer>
       </div>
