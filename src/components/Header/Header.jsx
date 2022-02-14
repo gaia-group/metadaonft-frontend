@@ -82,7 +82,7 @@ function Header({
         const newDate = new Date(dateJson.datetime)
         setLastRecordedTime(newDate)
       } catch (err) {
-        console.error('failed to fetch time') // eslint-disable-line no-console
+        console.error('failed to fetch time', err) // eslint-disable-line no-console
       }
       safeToFetch = true
     }, 1)
