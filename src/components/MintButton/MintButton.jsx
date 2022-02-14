@@ -1,24 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { ethers } from 'ethers'
-import { getWhitelistParams } from '../../utilities/merkleTrees'
+import pluralize from 'pluralize'
 
+import { getWhitelistParams } from '../../utilities/merkleTrees'
 import Button from '../Button/Button'
+
+const MINT_PRICE = 0.04
 
 function MintButton({
   onError,
   ethBalance,
-  isPaused,
   contract,
   isWrongNetwork,
   isBlockedByWhitelist,
+  isPublicMintingAllowed,
   account,
 }) {
+  const [amountToMint, setAmountToMint] = useState(1)
+
   function errorMessage() {
     if (isWrongNetwork) return '(on wrong network)'
-    if (isPaused) return '(minting is paused)'
     if (isBlockedByWhitelist) return '(whitelist required to mint)'
-    if (!isPaused && parseFloat(ethBalance) < 0.2) {
+    if (parseFloat(ethBalance) < MINT_PRICE * amountToMint) {
       return '(not enough ETH in wallet)'
     }
   }
@@ -26,24 +30,41 @@ function MintButton({
   async function handleClick() {
     try {
       const { proof, positions } = getWhitelistParams(account)
-      const value = ethers.utils.parseEther('0.2')
-      await contract.mint(account, 1, proof, positions, { value })
+      const value = ethers.utils.parseEther(
+        (MINT_PRICE * amountToMint).toString()
+      )
+      await contract.mint(account, amountToMint, proof, positions, { value })
     } catch (err) {
       onError(err)
     }
   }
 
   return (
-    <div className="flex flex-col items-center space-y-1">
+    <div className="flex flex-col items-center space-y-2">
+      <select
+        value={amountToMint}
+        onChange={(e) => setAmountToMint(e.target.value)}
+        className="mt-1 block w-40 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+        disabled={
+          parseFloat(ethBalance) < MINT_PRICE ||
+          isWrongNetwork ||
+          isBlockedByWhitelist
+        }
+      >
+        {Array.from({ length: isPublicMintingAllowed ? 5 : 2 }).map((_, i) => (
+          <option key={String(i)} value={i + 1}>
+            {pluralize('Mint', i + 1, true)}
+          </option>
+        ))}
+      </select>
       <Button
         disabled={
-          parseFloat(ethBalance) < 0.2 ||
-          isPaused ||
+          parseFloat(ethBalance) < MINT_PRICE ||
           isWrongNetwork ||
           isBlockedByWhitelist
         }
         onClick={handleClick}
-        label="Mint for 0.2 ETH"
+        label={`Mint ${amountToMint} for ${MINT_PRICE * amountToMint} ETH`}
         shadow
       />
       {errorMessage && (
@@ -58,7 +79,6 @@ MintButton.defaultProps = {
   account: '',
   ethBalance: '',
   contract: '',
-  isPaused: false,
   isWrongNetwork: false,
   isBlockedByWhitelist: true,
 }
@@ -68,9 +88,9 @@ MintButton.propTypes = {
   account: PropTypes.string,
   ethBalance: PropTypes.string,
   contract: PropTypes.string,
-  isPaused: PropTypes.bool,
   isWrongNetwork: PropTypes.bool,
   isBlockedByWhitelist: PropTypes.bool,
+  isPublicMintingAllowed: PropTypes.bool,
 }
 
 export default MintButton

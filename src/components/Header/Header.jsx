@@ -1,33 +1,36 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import SVG from 'react-inlinesvg'
+import Countdown from 'react-countdown'
+import { DateTime } from 'luxon'
+import pluralize from 'pluralize'
 
-// import etherscanSocialLogo from '../../images/etherscan-social-logo.svg'
 import discordSocialLogo from '../../images/discord-social-logo.svg'
-import openseaSocialLogo from '../../images/opensea-social-logo.svg'
-import sandboxMap from '../../images/sandbox-map.png'
-// FIXME: Add this in later when minting is live.
-// import ConnectWalletButton from '../ConnectWalletButton/ConnectWalletButton'
-// import BrowserNotSupportedNotification from '../BrowserNotSupportedNotification/BrowserNotSupportedNotification'
-// import WalletInfoPanel from '../WalletInfoPanel/WalletInfoPanel'
-// import MintButton from '../MintButton/MintButton'
+// FIXME: Add this in later when contract is deployed
+// import etherscanSocialLogo from '../../images/etherscan-social-logo.svg'
+// import openseaSocialLogo from '../../images/opensea-social-logo.svg'
+import ConnectWalletButton from '../ConnectWalletButton/ConnectWalletButton'
+import BrowserNotSupportedNotification from '../BrowserNotSupportedNotification/BrowserNotSupportedNotification'
+import WalletInfoPanel from '../WalletInfoPanel/WalletInfoPanel'
+import MintButton from '../MintButton/MintButton'
 
 const navigation = {
   social: [
     {
       name: 'Discord',
-      href: 'https://discord.gg/cfcnwggHGv',
+      href: 'https://discord.gg/bKtJ2nC2Rk',
       icon: (props) => (
         <SVG src={discordSocialLogo} title="Discord" {...props} />
       ),
     },
-    {
-      name: 'OpenSea',
-      href: 'https://opensea.io/meta-dao-nft',
-      icon: (props) => (
-        <SVG src={openseaSocialLogo} title="OpenSea" {...props} />
-      ),
-    },
+    // FIXME: Uncomment when we go live.
+    // {
+    //   name: 'OpenSea',
+    //   href: 'https://opensea.io/meta-dao-nft',
+    //   icon: (props) => (
+    //     <SVG src={openseaSocialLogo} title="OpenSea" {...props} />
+    //   ),
+    // },
     {
       name: 'Twitter',
       href: 'https://twitter.com/metadaonft',
@@ -47,20 +50,46 @@ const navigation = {
   ],
 }
 
-// FIXME: Add this in later when minting is live.
-// function Header({
-//   account,
-//   onError,
-//   onConnected,
-//   ethBalance,
-//   tokens,
-//   networkId,
-//   isPaused,
-//   isWrongNetwork,
-//   isBlockedByWhitelist,
-//   contract,
-// }) {
-function Header() {
+const LAUNCH_DATETIME = DateTime.fromObject(
+  { month: 2, year: 2021, day: 14, hour: 18 },
+  { zone: 'America/New_York' }
+).setZone()
+
+function Header({
+  account,
+  onError,
+  onConnected,
+  ethBalance,
+  tokens,
+  networkId,
+  isWrongNetwork,
+  isBlockedByWhitelist,
+  isPublicMintingAllowed,
+  contract,
+}) {
+  const [lastRecordedTime, setLastRecordedTime] = useState(null)
+
+  useEffect(() => {
+    // Wait for previous request to complete before fetching next one.
+    let safeToFetch = true
+    const timingInterval = setInterval(async () => {
+      if (!safeToFetch) return
+
+      try {
+        safeToFetch = false
+        const dateData = await fetch('http://worldtimeapi.org/api/timezone/GMT')
+        const dateJson = await dateData.json()
+        const newDate = new Date(dateJson.datetime)
+        setLastRecordedTime(newDate)
+      } catch (err) {
+        console.error('failed to fetch time') // eslint-disable-line no-console
+      }
+      safeToFetch = true
+    }, 1)
+
+    return () => clearInterval(timingInterval)
+  }, [lastRecordedTime])
+
   return (
     <div className="relative overflow-hidden bg-black">
       <div className="mx-auto max-w-7xl">
@@ -99,59 +128,99 @@ function Header() {
           <main className="pt-4">
             <div>
               <div className="relative">
-                <div className="absolute inset-x-0 bottom-0 bg-gray-900 h-1/2" />
+                <div className="absolute inset-x-0 bottom-0 bg-black h-1/2" />
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                   <div className="relative shadow-xl sm:overflow-hidden">
-                    <div className="absolute inset-0">
-                      <img
-                        className="object-cover w-full h-full brightness-75 saturate-[25%]"
-                        src={sandboxMap}
-                        alt="People working on laptops"
-                      />
-                      <div className="absolute inset-0 bg-green-700 mix-blend-multiply" />
-                    </div>
-                    <div className="relative px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8">
+                    <div className="relative px-4 py-8 sm:px-6 sm:py-10 lg:py-12 lg:px-8">
                       <h1 className="text-4xl font-extrabold tracking-tight text-center sm:text-5xl lg:text-6xl text-stroke-black">
                         <span className="inline text-green-300 sm:block">
-                          Own the most exclusive
+                          Making it easy to
                         </span>{' '}
                         <span className="inline text-white drop-shadow-xl sm:block text-stroke-black">
-                          metaverse real estate
+                          build inside the metaverse
                         </span>{' '}
                       </h1>
-                      <div className="flex flex-col items-center justify-center pt-12 mx-auto md:pt-8">
-                        {/* FIXME: Add this in later when minting is live. */}
-                        {/*
-                        {!account && window.ethereum && (
-                          <ConnectWalletButton
-                            onConnected={onConnected}
-                            onError={onError}
-                          />
-                        )}
-                        {!window.ethereum && (
-                          <BrowserNotSupportedNotification />
-                        )}
-                        {!!account && (
-                          <WalletInfoPanel
-                            account={account}
-                            ethBalance={ethBalance}
-                            tokens={tokens}
-                            networkId={networkId}
-                          />
-                        )}
-                        {!!account && (
-                          <MintButton
-                            onError={onError}
-                            account={account}
-                            ethBalance={ethBalance}
-                            contract={contract}
-                            isPaused={isPaused}
-                            isWrongNetwork={isWrongNetwork}
-                            isBlockedByWhitelist={isBlockedByWhitelist}
-                          />
-                        )}
-                        */}
-                      </div>
+                      <Countdown
+                        date={LAUNCH_DATETIME.valueOf()}
+                        now={() => lastRecordedTime}
+                        renderer={({
+                          days,
+                          hours,
+                          minutes,
+                          seconds,
+                          completed,
+                        }) => {
+                          if (!lastRecordedTime || days > 5) {
+                            // Date still being fetched from server. Place spacer.
+                            return <div className="h-32"></div>
+                          } else if (!completed && days > 0) {
+                            return (
+                              <h2 className="text-xl text-white font-extrabold tracking-tight text-center sm:text-2xl lg:text-3xl text-stroke-black pt-10">
+                                <p>
+                                  Minting starts in{' '}
+                                  <span className="text-green-300">
+                                    {pluralize('day', days, true)}
+                                  </span>{' '}
+                                  on{' '}
+                                </p>
+                                <p>
+                                  {LAUNCH_DATETIME.toLocaleString(
+                                    DateTime.DATETIME_FULL
+                                  )}
+                                </p>
+                              </h2>
+                            )
+                          } else if (!completed && days === 0) {
+                            return (
+                              <h2 className="text-xl text-white font-extrabold tracking-tight text-center sm:text-2xl lg:text-3xl text-stroke-black pt-10">
+                                <p>Minting starts in</p>
+                                <p className="tracking-wider text-green-300 font-mono">
+                                  {hours ? `${hours}:` : null}
+                                  {hours
+                                    ? String(minutes).padStart(2, '0')
+                                    : minutes}
+                                  :{String(seconds).padStart(2, '0')}
+                                </p>
+                              </h2>
+                            )
+                          } else {
+                            return (
+                              <div className="flex flex-col items-center justify-center pt-12 mx-auto md:pt-8">
+                                {!account && window.ethereum && (
+                                  <ConnectWalletButton
+                                    onConnected={onConnected}
+                                    onError={onError}
+                                  />
+                                )}
+                                {!window.ethereum && (
+                                  <BrowserNotSupportedNotification />
+                                )}
+                                {!!account && (
+                                  <WalletInfoPanel
+                                    account={account}
+                                    ethBalance={ethBalance}
+                                    tokens={tokens}
+                                    networkId={networkId}
+                                  />
+                                )}
+                                {!!account && (
+                                  <MintButton
+                                    onError={onError}
+                                    account={account}
+                                    ethBalance={ethBalance}
+                                    contract={contract}
+                                    isWrongNetwork={isWrongNetwork}
+                                    isBlockedByWhitelist={isBlockedByWhitelist}
+                                    isPublicMintingAllowed={
+                                      isPublicMintingAllowed
+                                    }
+                                  />
+                                )}
+                              </div>
+                            )
+                          }
+                        }}
+                      />
                     </div>
                   </div>
                 </div>
@@ -172,10 +241,10 @@ Header.propTypes = {
   onConnected: PropTypes.func,
   ethBalance: PropTypes.string,
   tokens: PropTypes.array,
-  networkId: PropTypes.string,
-  isPaused: PropTypes.bool,
+  networkId: PropTypes.number,
   isWrongNetwork: PropTypes.bool,
   isBlockedByWhitelist: PropTypes.bool,
+  isPublicMintingAllowed: PropTypes.bool,
   contract: PropTypes.object,
 }
 
