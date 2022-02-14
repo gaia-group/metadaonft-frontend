@@ -43,7 +43,7 @@ const faqs = [
   {
     id: count++,
     question: 'How many Meta DAO NFTs will be available to mint?',
-    answer: 'The Meta DAO collection comprises of 5,555 total land NFTs.',
+    answer: 'The Meta DAO collection comprises of 4,444 total land NFTs.',
   },
   {
     id: count++,

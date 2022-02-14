@@ -10,9 +10,7 @@ import Notifications from './Notifications/Notifications'
 // using them with ethers
 import TokenArtifact from '../contracts/MetaDaoNft.json'
 import contractAddress from '../contracts/contract-address.json'
-import discordCover from '../images/discord-cover.png'
-import openSeaLogo from '../images/opensea-logo.png'
-import ethLogo from '../images/eth-logo.png'
+import LinksSection from './LinksSection/LinksSection'
 // import etherscanSocialLogo from '../images/etherscan-social-logo.svg'
 import discordSocialLogo from '../images/discord-social-logo.svg'
 // import openseaSocialLogo from '../images/opensea-social-logo.svg'
@@ -163,7 +161,7 @@ export default function MetaDaoNft() {
             <p className="text-lg text-left text-gray-200 sm:text-2xl">
               <span className="font-extrabold text-green-300">First</span>
               {', '}
-              sell 5,555 NFT collectibles.
+              sell 4,444 NFT collectibles.
             </p>
             <p className="text-lg text-left text-gray-200 sm:text-2xl">
               <span className="font-extrabold text-green-300">Next</span>
@@ -203,148 +201,7 @@ export default function MetaDaoNft() {
           </div>
         </div>
 
-        <div className="relative bg-black">
-          <div className="hidden h-56 bg-green-300 md:block sm:h-72 md:absolute md:left-0 md:h-full md:w-1/2">
-            <img
-              className="object-cover w-full h-full brightness-75 saturate-0"
-              src={discordCover}
-              alt=""
-            />
-            <div className="absolute inset-0 bg-green-300 mix-blend-multiply" />
-          </div>
-          <div className="relative px-4 py-12 mx-auto max-w-7xl sm:px-6 lg:px-8 lg:py-16">
-            <div className="md:ml-auto md:w-1/2 md:pl-10">
-              <h2 className="text-base font-semibold text-gray-300 uppercase tradcking-wider">
-                Follow Us
-              </h2>
-              <p className="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-                Join the action
-              </p>
-              <p className="mt-3 text-lg text-gray-300">
-                All communication, collaboration and updates are shared through
-                our discord and twitter accounts. We value transparency and
-                engage with the community consistently.
-              </p>
-              <div className="flex mt-8 space-x-3">
-                <div className="inline-flex rounded-md shadow">
-                  <a
-                    href="https://discord.gg/bKtJ2nC2Rk"
-                    className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-black bg-green-300 border border-transparent rounded-md hover:bg-green-500"
-                  >
-                    Discord
-                    <SVG
-                      src={discordSocialLogo}
-                      title="Discord"
-                      className="w-5 h-5 ml-2 fill-current"
-                    />
-                  </a>
-                </div>
-                <div className="inline-flex rounded-md shadow">
-                  <a
-                    href="https://twitter.com/metadaonft"
-                    className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-black bg-green-300 border border-transparent rounded-md hover:bg-green-500"
-                  >
-                    Twitter
-                    <SVG
-                      src={twitterSocialLogo}
-                      title="Twitter"
-                      className="w-5 h-5 ml-1"
-                    />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="relative bg-gray-900 sm:bg-black">
-          <div
-            style={{ backgroundColor: '#5a5a5a' }}
-            className="hidden h-56 overflow-hidden md:block sm:h-72 md:absolute md:right-0 md:h-full md:w-1/2"
-          >
-            <img
-              className="w-[75%] object-cover h-full saturate-0 brightness-75"
-              style={{ backgroundColor: '#2081E2' }}
-              src={openSeaLogo}
-              alt=""
-            />
-            <div className="absolute inset-0 bg-green-300 mix-blend-multiply" />
-          </div>
-          <div className="relative px-4 py-12 mx-auto max-w-7xl sm:px-6 lg:px-8 lg:py-16">
-            <div className="md:mr-auto md:w-1/2 md:pr-10">
-              <h2 className="text-base font-semibold tracking-wider text-gray-300 uppercase">
-                Review our contract
-              </h2>
-              <p className="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-                Transparency is key
-              </p>
-              <p className="mt-3 text-lg text-gray-300">
-                Our contract will be verified and available for review before
-                launch, and we can answer questions about the contract in our
-                discord.
-              </p>
-              <div className="mt-8">
-                <div className="inline-flex rounded-md shadow">
-                  <button
-                    disabled
-                    className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-gray-800 bg-gray-400 border border-transparent rounded-md cursor-not-allowed"
-                  >
-                    Coming soon...
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="relative bg-black">
-          <div
-            className="hidden h-56 overflow-hidden md:block sm:h-72 md:absolute md:left-0 md:h-full md:w-1/2"
-            style={{ backgroundColor: '#606060' }}
-          >
-            <img
-              className="w-[75%] h-full object-cover brightness-75 saturate-0 translate-x-52"
-              src={ethLogo}
-              alt=""
-            />
-            <div className="absolute inset-0 bg-green-300 mix-blend-multiply" />
-          </div>
-          <div className="relative px-4 py-12 mx-auto max-w-7xl sm:px-6 lg:px-8 lg:py-16">
-            <div className="md:ml-auto md:w-1/2 md:pl-10">
-              <h2 className="text-base font-semibold tracking-wider text-gray-300 uppercase">
-                Find us on OpenSea
-              </h2>
-              <p className="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-                See the collection
-              </p>
-              <p className="mt-3 text-lg text-gray-300">
-                The Meta DAO collection is available on OpenSea, where you can
-                monitor all sales activity.
-              </p>
-              <div className="mt-8">
-                <div className="inline-flex rounded-md shadow">
-                  <button
-                    disabled
-                    className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-gray-800 bg-gray-400 border border-transparent rounded-md cursor-not-allowed"
-                  >
-                    Coming soon...
-                  </button>
-                  {/*
-                  FIXME: Uncomment when minting is live.
-                  <a
-                    href="https://discord.gg/bKtJ2nC2Rk"
-                    className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-black bg-green-300 border border-transparent rounded-md hover:bg-green-500"
-                  >
-                    Go to OpenSea
-                    <SVG
-                      src={openseaSocialLogo}
-                      title="OpenSea"
-                      className="w-5 h-5 ml-2 fill-current"
-                    />
-                  </a> */}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <LinksSection />
         <FAQ />
         <footer className="bg-black border-t border-gray-800">
           <div className="flex justify-center py-8 space-x-10">
