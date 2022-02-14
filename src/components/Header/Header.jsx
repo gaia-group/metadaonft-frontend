@@ -51,7 +51,7 @@ const navigation = {
 }
 
 const LAUNCH_DATETIME = DateTime.fromObject(
-  { month: 2, year: 2022, day: 14, hour: 18 },
+  { month: 2, year: 2021, day: 14, hour: 18 },
   { zone: 'America/New_York' }
 ).setZone()
 
