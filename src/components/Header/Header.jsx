@@ -51,7 +51,7 @@ const navigation = {
 }
 
 const LAUNCH_DATETIME = DateTime.fromObject(
-  { month: 2, year: 2022, day: 15, hour: 18 },
+  { month: 2, year: 2022, day: 15, hour: 20 },
   { zone: 'America/New_York' }
 ).setZone()
 
@@ -160,9 +160,16 @@ function Header({
                               <h2 className="text-xl text-white font-extrabold tracking-tight text-center sm:text-2xl lg:text-3xl text-stroke-black pt-10">
                                 <p>
                                   Minting starts in{' '}
-                                  <span className="text-green-300">
-                                    {pluralize('day', days, true)}
-                                  </span>{' '}
+                                  {days === 1 && (
+                                    <span className="text-green-300">
+                                      {pluralize('hour', 24 + hours, true)}
+                                    </span>
+                                  )}
+                                  {days > 1 && (
+                                    <span className="text-green-300">
+                                      {pluralize('day', days, true)}
+                                    </span>
+                                  )}{' '}
                                   on{' '}
                                 </p>
                                 <p>
