@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import SVG from 'react-inlinesvg'
 import Countdown from 'react-countdown'
@@ -51,7 +51,7 @@ const navigation = {
 }
 
 const LAUNCH_DATETIME = DateTime.fromObject(
-  { month: 2, year: 2021, day: 13, hour: 18 },
+  { month: 2, year: 2022, day: 14, hour: 18 },
   { zone: 'America/New_York' }
 ).setZone()
 
@@ -67,6 +67,29 @@ function Header({
   isPublicMintingAllowed,
   contract,
 }) {
+  const [lastRecordedTime, setLastRecordedTime] = useState(null)
+
+  useEffect(() => {
+    // Wait for previous request to complete before fetching next one.
+    let safeToFetch = true
+    const timingInterval = setInterval(async () => {
+      if (!safeToFetch) return
+
+      try {
+        safeToFetch = false
+        const dateData = await fetch('http://worldtimeapi.org/api/timezone/GMT')
+        const dateJson = await dateData.json()
+        const newDate = new Date(dateJson.datetime)
+        setLastRecordedTime(newDate)
+      } catch (err) {
+        console.error('failed to fetch time') // eslint-disable-line no-console
+      }
+      safeToFetch = true
+    }, 1)
+
+    return () => clearInterval(timingInterval)
+  }, [lastRecordedTime])
+
   return (
     <div className="relative overflow-hidden bg-black">
       <div className="mx-auto max-w-7xl">
@@ -119,6 +142,7 @@ function Header({
                       </h1>
                       <Countdown
                         date={LAUNCH_DATETIME.valueOf()}
+                        now={() => lastRecordedTime}
                         renderer={({
                           days,
                           hours,
@@ -126,7 +150,10 @@ function Header({
                           seconds,
                           completed,
                         }) => {
-                          if (!completed && days > 0) {
+                          if (!lastRecordedTime || days > 5) {
+                            // Date still being fetched from server. Place spacer.
+                            return <div className="h-32"></div>
+                          } else if (!completed && days > 0) {
                             return (
                               <h2 className="text-xl text-white font-extrabold tracking-tight text-center sm:text-2xl lg:text-3xl text-stroke-black pt-10">
                                 <p>
@@ -147,7 +174,7 @@ function Header({
                             return (
                               <h2 className="text-xl text-white font-extrabold tracking-tight text-center sm:text-2xl lg:text-3xl text-stroke-black pt-10">
                                 <p>Minting starts in</p>
-                                <p className="tracking-wider text-green-300">
+                                <p className="tracking-wider text-green-300 font-mono">
                                   {hours ? `${hours}:` : null}
                                   {hours
                                     ? String(minutes).padStart(2, '0')
@@ -214,7 +241,7 @@ Header.propTypes = {
   onConnected: PropTypes.func,
   ethBalance: PropTypes.string,
   tokens: PropTypes.array,
-  networkId: PropTypes.string,
+  networkId: PropTypes.number,
   isWrongNetwork: PropTypes.bool,
   isBlockedByWhitelist: PropTypes.bool,
   isPublicMintingAllowed: PropTypes.bool,
