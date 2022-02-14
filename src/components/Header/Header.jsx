@@ -77,12 +77,14 @@ function Header({
 
       try {
         safeToFetch = false
-        const dateData = await fetch('http://worldtimeapi.org/api/timezone/GMT')
+        const dateData = await fetch(
+          'https://worldtimeapi.org/api/timezone/GMT'
+        )
         const dateJson = await dateData.json()
         const newDate = new Date(dateJson.datetime)
         setLastRecordedTime(newDate)
       } catch (err) {
-        console.error('failed to fetch time', err) // eslint-disable-line no-console
+        console.error('failed to fetch time') // eslint-disable-line no-console
       }
       safeToFetch = true
     }, 1)
