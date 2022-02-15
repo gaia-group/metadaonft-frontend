@@ -61,7 +61,7 @@ export default function MetaDaoNft() {
   const [contract, setContract] = useState(null)
   const [tokens, setTokens] = useState([])
   const [errors, setErrors] = useState([])
-  const [isWrongNetwork, setIsWrongNetwork] = useState(false)
+  const [isWrongNetwork, setIsWrongNetwork] = useState(true)
   const [isBlockedByWhitelist, setIsBlockedByWhitelist] = useState(true)
   const [isPublicMintingAllowed, setIsPublicMintingAllowed] = useState(false)
   const [totalSupply, setTotalSupply] = useState('0')
@@ -83,16 +83,20 @@ export default function MetaDaoNft() {
         setNetworkId(chainId)
         const isWrongNetwork =
           (await newProvider.getCode(contractAddress.MetaDaoNft)) === '0x'
-        if (account) {
-          const ethBalance = await newProvider.getBalance(account)
-          setAccount(account)
-          setEthBalance(ethers.utils.formatEther(ethBalance).substring(0, 6))
-          if (!isWrongNetwork) {
-            const contract = new ethers.Contract(
-              contractAddress.MetaDaoNft,
-              TokenArtifact.abi,
-              newProvider.getSigner()
-            )
+
+        if (!isWrongNetwork) {
+          const contract = new ethers.Contract(
+            contractAddress.MetaDaoNft,
+            TokenArtifact.abi,
+            newProvider
+          )
+          setTotalSupply((await contract.totalSupply()).toString())
+
+          if (account) {
+            const ethBalance = await newProvider.getBalance(account)
+            setAccount(account)
+            setEthBalance(ethers.utils.formatEther(ethBalance).substring(0, 6))
+
             const isPublicMintingAllowed =
               await contract.isPublicMintingAllowed()
             const { proof, positions } = getWhitelistParams(account)
@@ -114,7 +118,6 @@ export default function MetaDaoNft() {
             )
             setTokens(array)
             setContract(contract)
-            setTotalSupply((await contract.totalSupply()).toString())
             setIsPublicMintingAllowed(isPublicMintingAllowed)
             setIsBlockedByWhitelist(
               !isPublicMintingAllowed && !isUserWhitelisted

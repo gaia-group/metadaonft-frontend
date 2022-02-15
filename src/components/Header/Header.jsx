@@ -205,7 +205,9 @@ function Header({
                               <>
                                 <h2 className="text-xl text-white font-extrabold tracking-tight text-center sm:text-2xl lg:text-3xl text-stroke-black pt-10">
                                   <p className="tracking-wider text-green-300">
-                                    {totalSupply}/4444 minted
+                                    {isWrongNetwork
+                                      ? '⚠️ Connect to mainnet to see mint details'
+                                      : `${totalSupply}/4444 minted`}
                                   </p>
                                 </h2>
                                 <div className="flex flex-col items-center justify-center pt-8 mx-auto">
