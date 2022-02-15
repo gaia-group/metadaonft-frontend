@@ -80,24 +80,21 @@ export default function MetaDaoNft() {
       try {
         const [account] = await newProvider.listAccounts()
         const { chainId } = await newProvider.getNetwork()
-        setNetworkId(chainId)
         const isWrongNetwork =
           (await newProvider.getCode(contractAddress.MetaDaoNft)) === '0x'
-
-        let contract
+        setNetworkId(chainId)
+        setIsWrongNetwork(isWrongNetwork)
+        let contract = new ethers.Contract(
+          contractAddress.MetaDaoNft,
+          TokenArtifact.abi,
+          newProvider
+        )
         if (!isWrongNetwork) {
-          const signerOrProvider = newProvider.getSigner().address
-            ? newProvider.getSigner()
-            : newProvider
-          contract = new ethers.Contract(
-            contractAddress.MetaDaoNft,
-            TokenArtifact.abi,
-            signerOrProvider
-          )
           setTotalSupply((await contract.totalSupply()).toString())
         }
 
         if (account) {
+          contract = contract.connect(newProvider.getSigner())
           const ethBalance = await newProvider.getBalance(account)
           setAccount(account)
           setEthBalance(ethers.utils.formatEther(ethBalance).substring(0, 6))
@@ -128,10 +125,6 @@ export default function MetaDaoNft() {
               !isPublicMintingAllowed && !isUserWhitelisted
             )
           }
-          setIsWrongNetwork(isWrongNetwork)
-        } else {
-          setContract(null)
-          setIsWrongNetwork(false)
         }
       } catch (err) {
         addError(err)
