@@ -81,6 +81,15 @@ function ArtistSpotlight() {
               </a>
               ,{' '}
               <a
+                href="https://opensea.io/collection/8thproject1"
+                className="text-green-300 hover:text-green-400"
+                rel="noreferrer"
+                target="_blank"
+              >
+                8th Project 1/1s
+              </a>
+              ,{' '}
+              <a
                 href="https://opensea.io/collection/8thwonders"
                 className="text-green-300 hover:text-green-400"
                 rel="noreferrer"
