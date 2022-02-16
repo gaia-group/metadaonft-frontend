@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import SVG from 'react-inlinesvg'
+import ReactGA from 'react-ga'
 
 // We'll use ethers to interact with the Ethereum network and our contract
 import { ethers } from 'ethers'
@@ -55,6 +56,8 @@ const navigation = {
   ],
 }
 
+ReactGA.initialize('UA-220614618-2')
+
 export default function MetaDaoNft() {
   const [networkId, setNetworkId] = useState(null)
   const [account, setAccount] = useState(null)
@@ -66,6 +69,8 @@ export default function MetaDaoNft() {
   const [isBlockedByWhitelist, setIsBlockedByWhitelist] = useState(true)
   const [isPublicMintingAllowed, setIsPublicMintingAllowed] = useState(false)
   const [totalSupply, setTotalSupply] = useState('0')
+
+  ReactGA.pageview(window.location.pathname)
 
   useEffect(() => {
     if (!window.ethereum) return

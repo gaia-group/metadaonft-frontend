@@ -36,6 +36,7 @@
     "react": "^16.13.1",
     "react-countdown": "^2.3.2",
     "react-dom": "^16.13.1",
+    "react-ga": "^3.3.0",
     "react-inlinesvg": "^2.3.0",
     "react-scripts": "^4.0.3",
     "storybook-dark-mode": "^1.0.8"
