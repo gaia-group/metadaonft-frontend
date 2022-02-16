@@ -33,12 +33,12 @@ const faqs = [
   {
     id: count++,
     question: 'How much does it cost to mint a Meta DAO NFT?',
-    answer: '0.149 ETH',
+    answer: '0.04 ETH',
   },
   {
     id: count++,
     question: 'How many Meta DAO NFTs can we mint?',
-    answer: '2 per wallet.',
+    answer: '2 per wallet during presale; 5 per wallet during public sale.',
   },
   {
     id: count++,
