@@ -167,7 +167,7 @@ function Header({
                             return (
                               <h2 className="text-xl text-white font-extrabold tracking-tight text-center sm:text-2xl lg:text-3xl text-stroke-black pt-10">
                                 <p>
-                                  Minting starts in{' '}
+                                  Presale starts in{' '}
                                   {days === 1 && (
                                     <span className="text-green-300">
                                       {pluralize('hour', 24 + hours, true)}
