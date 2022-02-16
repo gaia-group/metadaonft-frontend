@@ -8,7 +8,7 @@ function Notifications({ errors }) {
   return (
     <div
       aria-live="assertive"
-      className="fixed inset-0 flex flex-col items-end justify-end px-4 py-6 space-y-2 pointer-events-none sm:p-6 sm:items-start sm:justify-start"
+      className="fixed inset-0 flex flex-col items-end justify-end px-4 py-6 space-y-2 pointer-events-none sm:p-6 sm:items-start sm:justify-start z-20"
     >
       {errors.map((error) => (
         <Notification
