@@ -50,8 +50,8 @@ const navigation = {
   ],
 }
 
-const LAUNCH_DATETIME = DateTime.fromObject(
-  { month: 2, year: 2022, day: 16, hour: 18 },
+const WHITELIST_LAUNCH_DATETIME = DateTime.fromObject(
+  { month: 2, year: 2022, day: 20, hour: 9 },
   { zone: 'America/New_York' }
 ).setZone()
 
@@ -147,7 +147,7 @@ function Header({
                         </span>{' '}
                       </h1>
                       <Countdown
-                        date={LAUNCH_DATETIME.valueOf()}
+                        date={WHITELIST_LAUNCH_DATETIME.valueOf()}
                         now={() => lastRecordedTime}
                         renderer={({
                           days,
@@ -181,7 +181,7 @@ function Header({
                                   on{' '}
                                 </p>
                                 <p>
-                                  {LAUNCH_DATETIME.toLocaleString(
+                                  {WHITELIST_LAUNCH_DATETIME.toLocaleString(
                                     DateTime.DATETIME_FULL
                                   )}
                                 </p>
