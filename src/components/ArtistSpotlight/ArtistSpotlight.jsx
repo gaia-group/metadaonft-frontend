@@ -56,18 +56,18 @@ function ArtistSpotlight() {
             </h3>
             <p className="mt-3 text-lg text-gray-300">
               Free of any artistic education, he doesn&apos;t draw what art
-              schools teach. He uses raw imagination and artistic impulse as his
+              schools teach. Raw imagination and artistic impulse are his
               drivers.
             </p>
             <p className="mt-3 text-lg text-gray-300">
               He started the Art of Drawing for the first time in March 2020,
-              thanks to the COVID19 pandemic in which he was able to dedicate
-              time to this new passion.
+              thanks to the COVID19 pandemic, dedicating time to this new
+              passion.
             </p>
             <p className="mt-3 text-lg text-gray-300">
-              He first scribbled destructured animals, then his style evolved.
-              He got to know and be inspired by the artist Wassily Kandinsky
-              while keeping a geometrical style.
+              Starting with scribbled destructured animals, his style evolved
+              over time and was inspired by the artist Wassily Kandinsky while
+              keeping a geometrical style.
             </p>
             <p className="mt-3 text-lg text-gray-300">
               8thproject has launched several successful NFT projects including{' '}
