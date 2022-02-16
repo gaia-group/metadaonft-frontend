@@ -68,9 +68,8 @@ const faqs = [
           and the communities created around them.
         </p>
         <p>
-          The Meta DAO focuses on making it easier to own and build onq
-          metaverse land. The other NFT projects we release will have their own
-          focus.
+          The Meta DAO focuses on making it easier to own and build on metaverse
+          land. The other NFT projects we release will have their own focus.
         </p>
       </div>
     ),
