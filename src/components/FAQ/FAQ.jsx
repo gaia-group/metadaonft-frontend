@@ -21,12 +21,6 @@ const faqs = [
           the digital world. You&apos;ll be part of an exclusive club of
           likeminded people who want to innovate in this world.
         </p>
-
-        <p>
-          Lastly, you get early access to purchase other products launched by
-          either Gaia Group of Meta DAO, including our second product that
-          brings your digital collectible to life.
-        </p>
       </div>
     ),
   },
@@ -38,7 +32,8 @@ const faqs = [
   {
     id: count++,
     question: 'How many Meta DAO NFTs can we mint?',
-    answer: '2 per wallet during presale; 5 per wallet during public sale.',
+    answer:
+      '2 per transaction during presale; 5 per transaction during public sale.',
   },
   {
     id: count++,
@@ -53,23 +48,28 @@ const faqs = [
   },
   {
     id: count++,
-    question: 'What is Gaia Group?',
-    answer:
-      'Gaia Group is the overarching brand that is launching Meta DAO and future NFT projects. Gaia is the goddess of the earth and we use her name as we produce more land projects in the metaverse.',
-  },
-  {
-    id: count++,
-    question: 'Why have Gaia Group and Meta DAO as two different brand names?',
+    question: 'What are you doing to reduce gas costs?',
     answer: (
       <div className="space-y-3">
         <p>
-          All NFTs released by Gaia Group will have their own theme and unique
-          draw to them. This creates diversity in where we buy the real estate,
-          and the communities created around them.
+          Our minting contract uses the ERC-721A implementation to mint NFTs.
         </p>
         <p>
-          The Meta DAO focuses on making it easier to own and build on metaverse
-          land. The other NFT projects we release will have their own focus.
+          This is just like every other NFT you may have seen, but you pay less
+          in gas when minting multiple mints at the same time.
+        </p>
+        <p>
+          Unlike other contracts, minting even 5 pieces at once costs the same
+          as minting a single NFT.
+        </p>
+        <p>
+          More information about ERC-721A can be found at:{' '}
+          <a
+            href="https://www.azuki.com/erc721a"
+            className="text-green-300 hover:text-green-500"
+          >
+            azuki.com/erc721a
+          </a>
         </p>
       </div>
     ),
