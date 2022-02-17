@@ -49,7 +49,7 @@ function Roadmap() {
           </div>
 
           <div className="flex flex-col items-center justify-center mx-auto bg-gray-900 md:flex-row">
-            <div className="order-last w-full max-w-3xl px-4 border-gray-700 md:order-first sm:px-6 lg:px-8">
+            <div className="order-last w-full max-w-3xl px-4 border-gray-700 md:order-first sm:px-6 lg:px-8 z-10">
               <h2 className="py-8 mt-2 text-3xl font-extrabold tracking-tight text-left text-gray-200 sm:text-4xl">
                 The Roadmap
               </h2>
