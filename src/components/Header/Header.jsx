@@ -175,7 +175,7 @@ function Header({
                                   )}
                                   {days > 1 && (
                                     <span className="text-green-300">
-                                      {pluralize('day', days, true)}
+                                      {pluralize('day', days + 1, true)}
                                     </span>
                                   )}{' '}
                                   on{' '}
