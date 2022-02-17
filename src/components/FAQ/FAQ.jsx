@@ -42,6 +42,11 @@ const faqs = [
   },
   {
     id: count++,
+    question: 'When will the art reveal on my Meta DAO NFT?',
+    answer: 'Instantly. Delayed reveals suck.',
+  },
+  {
+    id: count++,
     question: 'How do I mint or buy a Meta DAO NFT?',
     answer:
       'We will provide exact instructions on how to mint in our discord. The mint will take place only on this official website. Do not ever click on links or talk to people in DMs. They are all 100% a scam. Always follow the instructions in our discord or on this site.',
