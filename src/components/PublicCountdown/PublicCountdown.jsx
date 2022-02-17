@@ -11,7 +11,7 @@ function PublicCountdown({ lastRecordedTime, isWrongNetwork, totalSupply }) {
       renderer={({ hours, minutes, seconds, completed }) => {
         if (!completed) {
           return (
-            <div className="flex justify-center items-center text-xl text-white font-extrabold tracking-tight text-center sm:text-2xl lg:text-3xl text-stroke-black pt-10 space-y-2">
+            <div className="text-xl text-white font-extrabold tracking-tight text-center sm:text-2xl lg:text-3xl text-stroke-black pt-10 space-y-2">
               <p>Pre-sale is open</p>
               <div>
                 <p>
