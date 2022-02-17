@@ -188,6 +188,14 @@ export default function MetaDaoNft() {
             All Rights Reserved © Meta DAO by Gaia Group{' '}
             {new Date().getFullYear()}
           </p>
+          <p className="pb-5 text-center text-gray-300">
+            <a
+              className="text-green-300 hover:text-green-300 text-xs"
+              href="https://raritysniper.com/"
+            >
+              NFT Rarity
+            </a>
+          </p>
         </footer>
       </div>
       <Notifications errors={errors} />
