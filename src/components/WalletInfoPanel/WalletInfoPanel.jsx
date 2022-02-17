@@ -22,7 +22,7 @@ function WalletInfoPanel({ account, ethBalance, tokens, networkId }) {
   }
 
   return (
-    <div className="max-w-md m-6 text-center bg-white shadow-lg sm:rounded-lg">
+    <div className="max-w-md mx-2 my-6 text-center bg-white shadow-lg sm:rounded-lg">
       <div className="px-4 py-5 sm:p-6">
         <h3 className="text-lg font-semibold leading-6 text-green-800">
           Connected to{' '}

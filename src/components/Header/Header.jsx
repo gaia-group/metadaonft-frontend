@@ -1,18 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import SVG from 'react-inlinesvg'
-import Countdown from 'react-countdown'
-import { DateTime } from 'luxon'
-import pluralize from 'pluralize'
+import Countdown from '../Countdown/Countdown'
 
 import discordSocialLogo from '../../images/discord-social-logo.svg'
 // FIXME: Add this in later when contract is deployed
 // import etherscanSocialLogo from '../../images/etherscan-social-logo.svg'
 // import openseaSocialLogo from '../../images/opensea-social-logo.svg'
-import ConnectWalletButton from '../ConnectWalletButton/ConnectWalletButton'
-import BrowserNotSupportedNotification from '../BrowserNotSupportedNotification/BrowserNotSupportedNotification'
-import WalletInfoPanel from '../WalletInfoPanel/WalletInfoPanel'
-import MintButton from '../MintButton/MintButton'
+
+const OPEN_SEA_URL = 'https://opensea.io/meta-dao-nft'
 
 const navigation = {
   social: [
@@ -26,7 +22,7 @@ const navigation = {
     // FIXME: Uncomment when we go live.
     // {
     //   name: 'OpenSea',
-    //   href: 'https://opensea.io/meta-dao-nft',
+    //   href: OPEN_SEA_URL,
     //   icon: (props) => (
     //     <SVG src={openseaSocialLogo} title="OpenSea" {...props} />
     //   ),
@@ -49,12 +45,6 @@ const navigation = {
     // },
   ],
 }
-
-const WHITELIST_LAUNCH_DATETIME = DateTime.fromObject(
-  { month: 2, year: 2022, day: 20, hour: 9 },
-  { zone: 'America/New_York' }
-).setZone()
-
 function Header({
   account,
   onError,
@@ -68,34 +58,6 @@ function Header({
   totalSupply,
   contract,
 }) {
-  const [lastRecordedTime, setLastRecordedTime] = useState(null)
-
-  useEffect(() => {
-    async function getTime() {
-      // Wait for previous request to complete before fetching next one.
-      let safeToFetch = true
-      if (!safeToFetch) return
-
-      try {
-        safeToFetch = false
-        const dateData = await fetch(
-          'https://worldtimeapi.org/api/timezone/GMT'
-        )
-        const dateJson = await dateData.json()
-        const newDate = new Date(dateJson.datetime)
-        setLastRecordedTime(newDate)
-      } catch (err) {
-        console.error('failed to fetch time') // eslint-disable-line no-console
-      }
-      safeToFetch = true
-    }
-
-    getTime() // Fetch it first to avoid waiting 1 sec for interval to kick in
-    const timingInterval = setInterval(getTime, 1000)
-
-    return () => clearInterval(timingInterval)
-  }, [])
-
   return (
     <div className="relative overflow-hidden bg-black">
       <div className="mx-auto max-w-7xl">
@@ -146,109 +108,36 @@ function Header({
                           build inside the metaverse
                         </span>{' '}
                       </h1>
-                      <Countdown
-                        date={WHITELIST_LAUNCH_DATETIME.valueOf()}
-                        now={() => lastRecordedTime}
-                        renderer={({
-                          days,
-                          hours,
-                          minutes,
-                          seconds,
-                          completed,
-                        }) => {
-                          if (!lastRecordedTime || days > 5) {
-                            // Date still being fetched from server. Place spacer.
-                            return (
-                              <h2 className="text-xl text-white font-extrabold tracking-tight text-center sm:text-2xl lg:text-3xl text-stroke-black pt-10 h-32">
-                                Loading...
-                              </h2>
-                            )
-                          } else if (!completed && days > 0) {
-                            return (
-                              <h2 className="text-xl text-white font-extrabold tracking-tight text-center sm:text-2xl lg:text-3xl text-stroke-black pt-10">
-                                <p>
-                                  Presale starts in{' '}
-                                  {days === 1 && (
-                                    <span className="text-green-300">
-                                      {pluralize('hour', 24 + hours, true)}
-                                    </span>
-                                  )}
-                                  {days > 1 && (
-                                    <span className="text-green-300">
-                                      {pluralize('day', days + 1, true)}
-                                    </span>
-                                  )}{' '}
-                                  on{' '}
-                                </p>
-                                <p>
-                                  {WHITELIST_LAUNCH_DATETIME.toLocaleString(
-                                    DateTime.DATETIME_FULL
-                                  )}
-                                </p>
-                              </h2>
-                            )
-                          } else if (!completed && days === 0) {
-                            return (
-                              <h2 className="text-xl text-white font-extrabold tracking-tight text-center sm:text-2xl lg:text-3xl text-stroke-black pt-10">
-                                <p>Minting starts in</p>
-                                <p className="tracking-wider text-green-300 font-mono">
-                                  {hours ? `${hours}:` : null}
-                                  {hours
-                                    ? String(minutes).padStart(2, '0')
-                                    : minutes}
-                                  :{String(seconds).padStart(2, '0')}
-                                </p>
-                              </h2>
-                            )
-                          } else {
-                            return (
-                              <>
-                                <h2 className="text-xl text-white font-extrabold tracking-tight text-center sm:text-2xl lg:text-3xl text-stroke-black pt-10">
-                                  <p className="tracking-wider text-green-300">
-                                    {isWrongNetwork
-                                      ? '⚠️ Connect to mainnet to see mint details'
-                                      : `${totalSupply}/4444 minted`}
-                                  </p>
-                                </h2>
-                                <div className="flex flex-col items-center justify-center pt-8 mx-auto">
-                                  {!account && window.ethereum && (
-                                    <ConnectWalletButton
-                                      onConnected={onConnected}
-                                      onError={onError}
-                                    />
-                                  )}
-                                  {!window.ethereum && (
-                                    <BrowserNotSupportedNotification />
-                                  )}
-                                  {!!account && (
-                                    <WalletInfoPanel
-                                      account={account}
-                                      ethBalance={ethBalance}
-                                      tokens={tokens}
-                                      networkId={networkId}
-                                    />
-                                  )}
-                                  {!!account && (
-                                    <MintButton
-                                      onError={onError}
-                                      account={account}
-                                      ethBalance={ethBalance}
-                                      contract={contract}
-                                      isWrongNetwork={isWrongNetwork}
-                                      isBlockedByWhitelist={
-                                        isBlockedByWhitelist
-                                      }
-                                      isPublicMintingAllowed={
-                                        isPublicMintingAllowed
-                                      }
-                                    />
-                                  )}
-                                </div>
-                              </>
-                            )
-                          }
-                        }}
-                      />
+                      {totalSupply < 4444 && (
+                        <Countdown
+                          account={account}
+                          onError={onError}
+                          onConnected={onConnected}
+                          ethBalance={ethBalance}
+                          tokens={tokens}
+                          networkId={networkId}
+                          isWrongNetwork={isWrongNetwork}
+                          isBlockedByWhitelist={isBlockedByWhitelist}
+                          isPublicMintingAllowed={isPublicMintingAllowed}
+                          totalSupply={totalSupply}
+                          contract={contract}
+                        />
+                      )}
+                      {totalSupply === 4444 && (
+                        <div className="text-xl text-white font-extrabold tracking-tight text-center sm:text-2xl lg:text-3xl text-stroke-black pt-10">
+                          <p>Meta DAO NFTs are sold out.</p>
+                          <p>
+                            Buy yours now on the{' '}
+                            <a
+                              className="text-green-300 hover:text-green-500"
+                              href={OPEN_SEA_URL}
+                            >
+                              secondary market
+                            </a>
+                            .
+                          </p>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>

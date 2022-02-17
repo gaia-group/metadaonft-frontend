@@ -40,36 +40,42 @@ function MintButton({
   }
 
   return (
-    <div className="flex flex-col items-center space-y-2">
-      <select
-        value={amountToMint}
-        onChange={(e) => setAmountToMint(e.target.value)}
-        className="mt-1 block w-40 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
-        disabled={
-          parseFloat(ethBalance) < MINT_PRICE ||
-          isWrongNetwork ||
-          isBlockedByWhitelist
-        }
-      >
-        {Array.from({ length: isPublicMintingAllowed ? 5 : 2 }).map((_, i) => (
-          <option key={String(i)} value={i + 1}>
-            {pluralize('Mint', i + 1, true)}
-          </option>
-        ))}
-      </select>
-      <Button
-        disabled={
-          parseFloat(ethBalance) < MINT_PRICE ||
-          isWrongNetwork ||
-          isBlockedByWhitelist
-        }
-        onClick={handleClick}
-        label={`Mint ${amountToMint} for ${MINT_PRICE * amountToMint} ETH`}
-        shadow
-      />
-      {errorMessage && (
-        <div className="text-sm text-red-600">{errorMessage()}</div>
-      )}
+    <div>
+      <div className="flex items-center space-x-2">
+        <select
+          value={amountToMint}
+          onChange={(e) => setAmountToMint(e.target.value)}
+          className="block h-12 w-22 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+          disabled={
+            parseFloat(ethBalance) < MINT_PRICE ||
+            isWrongNetwork ||
+            isBlockedByWhitelist
+          }
+        >
+          {Array.from({ length: isPublicMintingAllowed ? 5 : 2 }).map(
+            (_, i) => (
+              <option key={String(i)} value={i + 1}>
+                {pluralize('Mint', i + 1, true)}
+              </option>
+            )
+          )}
+        </select>
+        <Button
+          disabled={
+            parseFloat(ethBalance) < MINT_PRICE ||
+            isWrongNetwork ||
+            isBlockedByWhitelist
+          }
+          onClick={handleClick}
+          label={`Mint ${amountToMint} for ${MINT_PRICE * amountToMint} ETH`}
+          shadow
+        />
+      </div>
+      <p className="text-center pt-2">
+        {errorMessage && (
+          <div className="text-sm text-red-600">{errorMessage()}</div>
+        )}
+      </p>
     </div>
   )
 }
