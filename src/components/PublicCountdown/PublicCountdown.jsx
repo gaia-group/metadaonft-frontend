@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { default as ReactCountdown } from 'react-countdown'
 import { PUBLIC_LAUNCH_DATETIME } from '../Countdown/Countdown'
+import PromoModal from '../PromoModal/PromoModal'
 
 function PublicCountdown({ lastRecordedTime, isWrongNetwork, totalSupply }) {
   return (
@@ -34,6 +35,7 @@ function PublicCountdown({ lastRecordedTime, isWrongNetwork, totalSupply }) {
           ? '⚠️ Must connect to mainnet'
           : `${totalSupply}/4444 minted`}
       </p>
+      <PromoModal />
     </div>
   )
 }
