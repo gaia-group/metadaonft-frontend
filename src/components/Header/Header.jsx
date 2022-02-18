@@ -108,7 +108,7 @@ function Header({
                           build inside the metaverse
                         </span>{' '}
                       </h1>
-                      {totalSupply < 4444 && (
+                      {/* {totalSupply < 4444 && (
                         <Countdown
                           account={account}
                           onError={onError}
@@ -122,8 +122,8 @@ function Header({
                           totalSupply={totalSupply}
                           contract={contract}
                         />
-                      )}
-                      {totalSupply === 4444 && (
+                      )} */}
+                      {totalSupply < 4444 && (
                         <div className="text-xl text-white font-extrabold tracking-tight text-center sm:text-2xl lg:text-3xl text-stroke-black pt-10">
                           <p>Meta DAO NFTs are sold out.</p>
                           <p>
