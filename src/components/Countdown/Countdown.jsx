@@ -10,10 +10,9 @@ import LoadingCountdown from '../LoadingCountdown/LoadingCountdown'
 import ClosedPresaleCountdown from '../ClosedPresaleCountdown/ClosedPresaleCountdown'
 import PublicCountdown from '../PublicCountdown/PublicCountdown'
 
-export const WHITELIST_LAUNCH_DATETIME = DateTime.fromObject(
-  { month: 2, year: 2022, day: 20, hour: 9 },
-  { zone: 'America/New_York' }
-).setZone()
+export const WHITELIST_LAUNCH_DATETIME = DateTime.now()
+  .minus({ hours: 1 })
+  .setZone()
 
 export const PUBLIC_LAUNCH_DATETIME = WHITELIST_LAUNCH_DATETIME.plus({
   hours: 6,
