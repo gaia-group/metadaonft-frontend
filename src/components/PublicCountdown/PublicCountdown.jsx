@@ -14,7 +14,7 @@ function PublicCountdown({ lastRecordedTime, isWrongNetwork, totalSupply }) {
           if (!completed) {
             return (
               <>
-                <p>Pre-sale is open</p>
+                <p>Pre-sale is live</p>
                 <p>
                   Public starts in
                   <span className="tracking-wider text-green-300 font-mono ml-2">
@@ -26,7 +26,7 @@ function PublicCountdown({ lastRecordedTime, isWrongNetwork, totalSupply }) {
               </>
             )
           } else {
-            return <p>Public minting is open</p>
+            return <p>Public minting is live</p>
           }
         }}
       />
