@@ -69,7 +69,7 @@ function PromoModal() {
                       collection.
                     </p>
                     <p>
-                      Every 555 mints, one of the addresses in that group, gets
+                      Every 555 mints, one of the addresses in that group gets
                       sent one of these ultra rare mints for FREE.
                     </p>
                     <p>
