@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import SVG from 'react-inlinesvg'
-import Countdown from '../Countdown/Countdown'
 
 import discordSocialLogo from '../../images/discord-social-logo.svg'
 // FIXME: Add this in later when contract is deployed
@@ -45,19 +44,7 @@ const navigation = {
     // },
   ],
 }
-function Header({
-  account,
-  onError,
-  onConnected,
-  ethBalance,
-  tokens,
-  networkId,
-  isWrongNetwork,
-  isBlockedByWhitelist,
-  isPublicMintingAllowed,
-  totalSupply,
-  contract,
-}) {
+function Header({ totalSupply }) {
   return (
     <div className="relative overflow-hidden bg-black">
       <div className="mx-auto max-w-7xl">
@@ -108,21 +95,6 @@ function Header({
                           build inside the metaverse
                         </span>{' '}
                       </h1>
-                      {/* {totalSupply < 4444 && (
-                        <Countdown
-                          account={account}
-                          onError={onError}
-                          onConnected={onConnected}
-                          ethBalance={ethBalance}
-                          tokens={tokens}
-                          networkId={networkId}
-                          isWrongNetwork={isWrongNetwork}
-                          isBlockedByWhitelist={isBlockedByWhitelist}
-                          isPublicMintingAllowed={isPublicMintingAllowed}
-                          totalSupply={totalSupply}
-                          contract={contract}
-                        />
-                      )} */}
                       {totalSupply < 4444 && (
                         <div className="text-xl text-white font-extrabold tracking-tight text-center sm:text-2xl lg:text-3xl text-stroke-black pt-10">
                           <p>Meta DAO NFTs are sold out.</p>
