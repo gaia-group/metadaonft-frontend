@@ -20,6 +20,7 @@ import Header from './Header/Header'
 import ArtShowcase from './ArtShowcase/ArtShowcase'
 import ArtistSpotlight from './ArtistSpotlight/ArtistSpotlight'
 import Roadmap from './Roadmap/Roadmap'
+import SuccessfulMintModal from './SuccessfulMintModal/SuccessfulMintModal'
 import FAQ from './FAQ/FAQ'
 import { getWhitelistParams } from '../utilities/merkleTrees'
 
@@ -63,6 +64,7 @@ export default function MetaDaoNft() {
   const [networkId, setNetworkId] = useState(null)
   const [account, setAccount] = useState(null)
   const [ethBalance, setEthBalance] = useState(null)
+  const [showSuccessfulMintModal, setShowSuccessfulMintModal] = useState(false)
   const [contract, setContract] = useState(null)
   const [tokens, setTokens] = useState([])
   const [errors, setErrors] = useState([])
@@ -126,7 +128,15 @@ export default function MetaDaoNft() {
               })
             )
             setTokens(array)
-            setContract(contract)
+            setContract((oldContract) => {
+              if (oldContract) oldContract.removeAllListeners()
+              contract.on('SuccessfulMint', (_numMints, recipient) => {
+                if (account === recipient) {
+                  setShowSuccessfulMintModal(true)
+                }
+              })
+              return contract
+            })
             setIsPublicMintingAllowed(isPublicMintingAllowed)
             setIsBlockedByWhitelist(
               !isPublicMintingAllowed && !isUserWhitelisted
@@ -199,6 +209,10 @@ export default function MetaDaoNft() {
         </footer>
       </div>
       <Notifications errors={errors} />
+      <SuccessfulMintModal
+        open={showSuccessfulMintModal}
+        onClose={() => setShowSuccessfulMintModal(false)}
+      />
     </>
   )
 }
