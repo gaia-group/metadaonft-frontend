@@ -18,6 +18,11 @@ export const WHITELIST_LAUNCH_DATETIME = DateTime.fromObject(
 export const PUBLIC_LAUNCH_DATETIME = WHITELIST_LAUNCH_DATETIME.plus({
   hours: 6,
 })
+
+export const BOOOMER_PROMO_END_DATETIME = WHITELIST_LAUNCH_DATETIME.plus({
+  hours: 1,
+})
+
 function Countdown({
   account,
   onError,

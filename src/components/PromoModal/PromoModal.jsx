@@ -11,7 +11,7 @@ function PromoModal() {
       <button
         type="button"
         onClick={() => setIsOpen(true)}
-        className="text-xl text-white font-extrabold tracking-tight text-center sm:text-2xl lg:text-3xl text-stroke-black pt-10"
+        className="text-xl text-white font-extrabold tracking-tight text-center sm:text-2xl lg:text-3xl text-stroke-black"
       >
         Mint to win a{' '}
         <span className="text-green-300 hover:text-green-500">FREE</span> ultra
