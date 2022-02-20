@@ -6,8 +6,6 @@ import ConnectWalletButton from '../ConnectWalletButton/ConnectWalletButton'
 import classNames from 'classnames'
 
 import MintingControls from '../MintingControls/MintingControls'
-import LoadingCountdown from '../LoadingCountdown/LoadingCountdown'
-import ClosedPresaleCountdown from '../ClosedPresaleCountdown/ClosedPresaleCountdown'
 import PublicCountdown from '../PublicCountdown/PublicCountdown'
 import PromoModal from '../PromoModal/PromoModal'
 import PromoModal2 from '../PromoModal2/PromoModal2'
@@ -38,7 +36,7 @@ function Countdown({
   totalSupply,
   contract,
 }) {
-  const [lastRecordedTime, setLastRecordedTime] = useState(null)
+  const [lastRecordedTime, setLastRecordedTime] = useState(DateTime.now())
 
   useEffect(() => {
     async function getTime() {
@@ -51,9 +49,7 @@ function Countdown({
         const dateData = await fetch(
           'https://worldtimeapi.org/api/timezone/GMT'
         )
-        const dateJson = await dateData.json()
-        const newDate = new Date(dateJson.datetime)
-        setLastRecordedTime(newDate)
+        setLastRecordedTime(DateTime.now())
       } catch (err) {
         console.error('failed to fetch time') // eslint-disable-line no-console
       }
@@ -67,82 +63,47 @@ function Countdown({
   }, [])
 
   return (
-    <ReactCountdown
-      date={WHITELIST_LAUNCH_DATETIME.valueOf()}
-      now={() => lastRecordedTime}
-      renderer={({
-        days,
-        hours,
-        minutes,
-        seconds,
-        completed,
-        props: { date },
-      }) => {
-        if (!lastRecordedTime || days > 5) {
-          // Date still being fetched from server. Place spacer.
-          return <LoadingCountdown />
-        } else if (!completed) {
-          return (
-            <ClosedPresaleCountdown
-              days={days}
-              hours={hours}
-              minutes={minutes}
-              seconds={seconds}
-              expirationDate={date}
-              account={account}
-              isBlockedByWhitelist={isBlockedByWhitelist}
-            />
-          )
-        } else {
-          return (
-            <div
-              className={classNames('grid grid-cols-1', {
-                'md:grid-cols-2': !!account,
-              })}
-            >
-              <div className="flex flex-col items-center justify-start pt-4 md:pt-10 space-y-6">
-                <PublicCountdown
-                  lastRecordedTime={lastRecordedTime}
-                  isWrongNetwork={isWrongNetwork}
-                  totalSupply={totalSupply}
-                />
-                {!account && window.ethereum && !isWrongNetwork && (
-                  <ConnectWalletButton
-                    onConnected={onConnected}
-                    onError={onError}
-                  />
-                )}
-                <div className="text-xl text-white font-extrabold tracking-tight text-center sm:text-2xl lg:text-3xl text-stroke-black space-y-2 pt-5 hidden sm:block">
-                  <div className="flex flex-col">
-                    <PromoModal2 lastRecordedTime={lastRecordedTime} />
-                    <PromoModal />
-                  </div>
-                </div>
-              </div>
-              <MintingControls
-                account={account}
-                onError={onError}
-                onConnected={onConnected}
-                ethBalance={ethBalance}
-                tokens={tokens}
-                networkId={networkId}
-                isWrongNetwork={isWrongNetwork}
-                isBlockedByWhitelist={isBlockedByWhitelist}
-                isPublicMintingAllowed={isPublicMintingAllowed}
-                totalSupply={totalSupply}
-                contract={contract}
-              />
-              <div className="text-xl text-white font-extrabold tracking-tight text-center sm:text-2xl lg:text-3xl text-stroke-black space-y-2 pt-5 sm:hidden">
-                <div className="flex flex-col">
-                  <PromoModal2 lastRecordedTime={lastRecordedTime} />
-                  <PromoModal />
-                </div>
-              </div>
-            </div>
-          )
-        }
-      }}
-    />
+    <div
+      className={classNames('grid grid-cols-1', {
+        'md:grid-cols-2': !!account,
+      })}
+    >
+      <div className="flex flex-col items-center justify-start pt-4 md:pt-10 space-y-6">
+        <PublicCountdown
+          lastRecordedTime={lastRecordedTime}
+          isWrongNetwork={isWrongNetwork}
+          totalSupply={totalSupply}
+        />
+        {!account && window.ethereum && !isWrongNetwork && (
+          <ConnectWalletButton onConnected={onConnected} onError={onError} />
+        )}
+        <div className="text-xl text-white font-extrabold tracking-tight text-center sm:text-2xl lg:text-3xl text-stroke-black space-y-2 pt-5 hidden sm:block">
+          <div className="flex flex-col">
+            <PromoModal2 lastRecordedTime={lastRecordedTime} />
+            <PromoModal />
+          </div>
+        </div>
+      </div>
+      <MintingControls
+        account={account}
+        onError={onError}
+        onConnected={onConnected}
+        ethBalance={ethBalance}
+        tokens={tokens}
+        networkId={networkId}
+        isWrongNetwork={isWrongNetwork}
+        isBlockedByWhitelist={isBlockedByWhitelist}
+        isPublicMintingAllowed={isPublicMintingAllowed}
+        totalSupply={totalSupply}
+        contract={contract}
+      />
+      <div className="text-xl text-white font-extrabold tracking-tight text-center sm:text-2xl lg:text-3xl text-stroke-black space-y-2 pt-5 sm:hidden">
+        <div className="flex flex-col">
+          <PromoModal2 lastRecordedTime={lastRecordedTime} />
+          <PromoModal />
+        </div>
+      </div>
+    </div>
   )
 }
 
