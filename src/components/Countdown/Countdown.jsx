@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { DateTime } from 'luxon'
-import { default as ReactCountdown } from 'react-countdown'
 import ConnectWalletButton from '../ConnectWalletButton/ConnectWalletButton'
 import classNames from 'classnames'
 
@@ -46,9 +45,6 @@ function Countdown({
 
       try {
         safeToFetch = false
-        const dateData = await fetch(
-          'https://worldtimeapi.org/api/timezone/GMT'
-        )
         setLastRecordedTime(DateTime.now())
       } catch (err) {
         console.error('failed to fetch time') // eslint-disable-line no-console
