@@ -12,9 +12,9 @@ import Notifications from './Notifications/Notifications'
 import TokenArtifact from '../contracts/MetaDaoNft.json'
 import contractAddress from '../contracts/contract-address.json'
 import LinksSection from './LinksSection/LinksSection'
-// import etherscanSocialLogo from '../images/etherscan-social-logo.svg'
+import etherscanSocialLogo from '../images/etherscan-social-logo.svg'
 import discordSocialLogo from '../images/discord-social-logo.svg'
-// import openseaSocialLogo from '../images/opensea-social-logo.svg'
+import openseaSocialLogo from '../images/opensea-social-logo.svg'
 import twitterSocialLogo from '../images/twitter-social-logo.svg'
 import Header from './Header/Header'
 import ArtShowcase from './ArtShowcase/ArtShowcase'
@@ -33,14 +33,13 @@ const navigation = {
         <SVG src={discordSocialLogo} title="Discord" {...props} />
       ),
     },
-    // FIXME: Uncomment when we go live.
-    // {
-    //   name: 'OpenSea',
-    //   href: 'https://opensea.io/meta-dao-nft',
-    //   icon: (props) => (
-    //     <SVG src={openseaSocialLogo} title="OpenSea" {...props} />
-    //   ),
-    // },
+    {
+      name: 'OpenSea',
+      href: 'https://opensea.io/collection/meta-dao-nft',
+      icon: (props) => (
+        <SVG src={openseaSocialLogo} title="OpenSea" {...props} />
+      ),
+    },
     {
       name: 'Twitter',
       href: 'https://twitter.com/metadaonft',
@@ -48,13 +47,13 @@ const navigation = {
         <SVG src={twitterSocialLogo} title="Twitter" {...props} />
       ),
     },
-    // {
-    //   name: 'Etherscan',
-    //   href: '#',
-    //   icon: (props) => (
-    //     <SVG src={etherscanSocialLogo} title="Etherscan" {...props} />
-    //   ),
-    // },
+    {
+      name: 'Etherscan',
+      href: 'https://etherscan.io/address/0xD67cfF882066536D134E80b9ad2b16e247b6e438',
+      icon: (props) => (
+        <SVG src={etherscanSocialLogo} title="Etherscan" {...props} />
+      ),
+    },
   ],
 }
 

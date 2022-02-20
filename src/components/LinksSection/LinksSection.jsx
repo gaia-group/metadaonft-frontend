@@ -2,9 +2,8 @@ import React from 'react'
 import SVG from 'react-inlinesvg'
 
 import discordSocialLogo from '../../images/discord-social-logo.svg'
-// FIXME: Add this in later when contract is deployed
-// import etherscanSocialLogo from '../../images/etherscan-social-logo.svg'
-// import openseaSocialLogo from '../../images/opensea-social-logo.svg'
+import etherscanSocialLogo from '../../images/etherscan-social-logo.svg'
+import openseaSocialLogo from '../../images/opensea-social-logo.svg'
 
 const links = [
   {
@@ -24,22 +23,22 @@ const links = [
     ),
     href: 'https://twitter.com/metadaonft',
   },
-  // {
-  //   name: 'Contract',
-  //   description:
-  //     'Review the contract on Etherscan - we love to discuss our contract in Discord.',
-  //   href: '#',
-  //   icon: (props) => (
-  //     <SVG src={etherscanSocialLogo} title="Etherscan" {...props} />
-  //   ),
-  // },
-  // {
-  //   name: 'OpenSea',
-  //   description:
-  //     'Access the official collection, and pick your MetaDAO up on the secondary market.',
-  //   icon: (props) => <SVG src={openseaSocialLogo} title="OpenSea" {...props} />,
-  //   href: '#',
-  // },
+  {
+    name: 'Contract',
+    description:
+      'Review the contract on Etherscan - we love to discuss our contract in Discord.',
+    href: 'https://etherscan.io/address/0xD67cfF882066536D134E80b9ad2b16e247b6e438',
+    icon: (props) => (
+      <SVG src={etherscanSocialLogo} title="Etherscan" {...props} />
+    ),
+  },
+  {
+    name: 'OpenSea',
+    description:
+      'Access the official collection, and pick your MetaDAO up on the secondary market.',
+    icon: (props) => <SVG src={openseaSocialLogo} title="OpenSea" {...props} />,
+    href: 'https://opensea.io/collection/meta-dao-nft',
+  },
 ]
 
 function LinksSection() {

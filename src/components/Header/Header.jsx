@@ -4,11 +4,10 @@ import SVG from 'react-inlinesvg'
 import Countdown from '../Countdown/Countdown'
 
 import discordSocialLogo from '../../images/discord-social-logo.svg'
-// FIXME: Add this in later when contract is deployed
-// import etherscanSocialLogo from '../../images/etherscan-social-logo.svg'
-// import openseaSocialLogo from '../../images/opensea-social-logo.svg'
+import etherscanSocialLogo from '../../images/etherscan-social-logo.svg'
+import openseaSocialLogo from '../../images/opensea-social-logo.svg'
 
-const OPEN_SEA_URL = 'https://opensea.io/meta-dao-nft'
+const OPEN_SEA_URL = 'https://opensea.io/collection/meta-dao-nft'
 
 const navigation = {
   social: [
@@ -19,14 +18,13 @@ const navigation = {
         <SVG src={discordSocialLogo} title="Discord" {...props} />
       ),
     },
-    // FIXME: Uncomment when we go live.
-    // {
-    //   name: 'OpenSea',
-    //   href: OPEN_SEA_URL,
-    //   icon: (props) => (
-    //     <SVG src={openseaSocialLogo} title="OpenSea" {...props} />
-    //   ),
-    // },
+    {
+      name: 'OpenSea',
+      href: OPEN_SEA_URL,
+      icon: (props) => (
+        <SVG src={openseaSocialLogo} title="OpenSea" {...props} />
+      ),
+    },
     {
       name: 'Twitter',
       href: 'https://twitter.com/metadaonft',
@@ -36,13 +34,13 @@ const navigation = {
         </svg>
       ),
     },
-    // {
-    //   name: 'Etherscan',
-    //   href: '#',
-    //   icon: (props) => (
-    //     <SVG src={etherscanSocialLogo} title="Etherscan" {...props} />
-    //   ),
-    // },
+    {
+      name: 'Etherscan',
+      href: 'https://etherscan.io/address/0xD67cfF882066536D134E80b9ad2b16e247b6e438',
+      icon: (props) => (
+        <SVG src={etherscanSocialLogo} title="Etherscan" {...props} />
+      ),
+    },
   ],
 }
 function Header({
