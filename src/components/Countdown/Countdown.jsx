@@ -89,6 +89,8 @@ function Countdown({
               minutes={minutes}
               seconds={seconds}
               expirationDate={date}
+              account={account}
+              isBlockedByWhitelist={isBlockedByWhitelist}
             />
           )
         } else {

@@ -3,12 +3,18 @@ import PropTypes from 'prop-types'
 import pluralize from 'pluralize'
 import { DateTime } from 'luxon'
 
+import ConnectWalletButton from '../ConnectWalletButton/ConnectWalletButton'
+
 function ClosedPresaleCountdown({
   days,
   hours,
   minutes,
   seconds,
   expirationDate,
+  isBlockedByWhitelist,
+  account,
+  onConnected,
+  onError,
 }) {
   const isPresaleToday = days === 0
   const isPresaleTomorrow = days === 1
@@ -24,6 +30,25 @@ function ClosedPresaleCountdown({
             {hours ? String(minutes).padStart(2, '0') : minutes}:
             {String(seconds).padStart(2, '0')}
           </p>
+          <div className="pt-10">
+            {!account && window.ethereum && (
+              <div className="space-y-5">
+                <p>Connect your wallet to check whitelist status.</p>
+                <ConnectWalletButton
+                  onConnected={onConnected}
+                  onError={onError}
+                />
+              </div>
+            )}
+            <p>
+              {account &&
+                isBlockedByWhitelist &&
+                'You are not on the whitelist.'}
+              {account &&
+                !isBlockedByWhitelist &&
+                "Get ready - you're on the whitelist"}
+            </p>
+          </div>
         </>
       )}
       {isPresaleTomorrow && (
@@ -51,11 +76,15 @@ function ClosedPresaleCountdown({
 ClosedPresaleCountdown.defaultProps = {}
 
 ClosedPresaleCountdown.propTypes = {
+  account: PropTypes.string,
   days: PropTypes.number,
   hours: PropTypes.number,
+  onError: PropTypes.func,
+  onConnected: PropTypes.func,
   minutes: PropTypes.number,
   seconds: PropTypes.number,
   expirationDate: PropTypes.number,
+  isBlockedByWhitelist: PropTypes.bool,
 }
 
 export default ClosedPresaleCountdown
