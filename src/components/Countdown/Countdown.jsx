@@ -9,6 +9,8 @@ import MintingControls from '../MintingControls/MintingControls'
 import LoadingCountdown from '../LoadingCountdown/LoadingCountdown'
 import ClosedPresaleCountdown from '../ClosedPresaleCountdown/ClosedPresaleCountdown'
 import PublicCountdown from '../PublicCountdown/PublicCountdown'
+import PromoModal from '../PromoModal/PromoModal'
+import PromoModal2 from '../PromoModal2/PromoModal2'
 
 export const WHITELIST_LAUNCH_DATETIME = DateTime.fromObject(
   { month: 2, year: 2022, day: 20, hour: 9 },
@@ -108,6 +110,12 @@ function Countdown({
                     onError={onError}
                   />
                 )}
+                <div className="text-xl text-white font-extrabold tracking-tight text-center sm:text-2xl lg:text-3xl text-stroke-black space-y-2 pt-5 hidden sm:block">
+                  <div className="flex flex-col">
+                    <PromoModal2 lastRecordedTime={lastRecordedTime} />
+                    <PromoModal />
+                  </div>
+                </div>
               </div>
               <MintingControls
                 account={account}
@@ -122,6 +130,12 @@ function Countdown({
                 totalSupply={totalSupply}
                 contract={contract}
               />
+              <div className="text-xl text-white font-extrabold tracking-tight text-center sm:text-2xl lg:text-3xl text-stroke-black space-y-2 pt-5 sm:hidden">
+                <div className="flex flex-col">
+                  <PromoModal2 lastRecordedTime={lastRecordedTime} />
+                  <PromoModal />
+                </div>
+              </div>
             </div>
           )
         }

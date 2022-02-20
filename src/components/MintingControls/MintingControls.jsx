@@ -18,7 +18,7 @@ function MintingControls({
 }) {
   return (
     <div>
-      <div className="flex flex-col items-center justify-center pt-8 mx-auto">
+      <div className="flex flex-col items-center justify-center pt-3 mx-auto">
         {!window.ethereum && <BrowserNotSupportedNotification />}
         {!!account && (
           <WalletInfoPanel

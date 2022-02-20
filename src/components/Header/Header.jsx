@@ -100,14 +100,6 @@ function Header({
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                   <div className="relative shadow-xl sm:overflow-hidden">
                     <div className="relative px-4 py-8 sm:px-6 sm:py-10 lg:py-12 lg:px-8">
-                      <h1 className="text-4xl font-extrabold tracking-tight text-center sm:text-5xl lg:text-6xl text-stroke-black">
-                        <span className="inline text-green-300 sm:block">
-                          Making it easy to
-                        </span>{' '}
-                        <span className="inline text-white drop-shadow-xl sm:block text-stroke-black">
-                          build inside the metaverse
-                        </span>{' '}
-                      </h1>
                       {totalSupply < 4444 && (
                         <Countdown
                           account={account}
@@ -123,20 +115,30 @@ function Header({
                           contract={contract}
                         />
                       )}
-                      {totalSupply === 4444 && (
-                        <div className="text-xl text-white font-extrabold tracking-tight text-center sm:text-2xl lg:text-3xl text-stroke-black pt-10">
-                          <p>Meta DAO NFTs are sold out.</p>
-                          <p>
-                            Buy yours now on the{' '}
-                            <a
-                              className="text-green-300 hover:text-green-500"
-                              href={OPEN_SEA_URL}
-                            >
-                              secondary market
-                            </a>
-                            .
-                          </p>
-                        </div>
+                      {totalSupply >= 4444 && (
+                        <>
+                          <h1 className="text-4xl font-extrabold tracking-tight text-center sm:text-5xl lg:text-6xl text-stroke-black">
+                            <span className="inline text-green-300 sm:block">
+                              Making it easy to
+                            </span>{' '}
+                            <span className="inline text-white drop-shadow-xl sm:block text-stroke-black">
+                              build inside the metaverse
+                            </span>{' '}
+                          </h1>
+                          <div className="text-xl text-white font-extrabold tracking-tight text-center sm:text-2xl lg:text-3xl text-stroke-black pt-10">
+                            <p>Meta DAO NFTs are sold out.</p>
+                            <p>
+                              Buy yours now on the{' '}
+                              <a
+                                className="text-green-300 hover:text-green-500"
+                                href={OPEN_SEA_URL}
+                              >
+                                secondary market
+                              </a>
+                              .
+                            </p>
+                          </div>
+                        </>
                       )}
                     </div>
                   </div>

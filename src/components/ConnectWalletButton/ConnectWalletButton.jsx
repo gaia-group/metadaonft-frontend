@@ -21,7 +21,7 @@ function ConnectWalletButton({ onConnected, onError }) {
     <Button
       disabled={!window.ethereum}
       onClick={handleClick}
-      label="Connect Your Profile"
+      label="Connect Wallet"
       shadow
     />
   )
