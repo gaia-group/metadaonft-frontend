@@ -25,7 +25,25 @@ function PublicCountdown({ lastRecordedTime, isWrongNetwork, totalSupply }) {
               </>
             )
           } else {
-            return <p>Public minting is live</p>
+            return (
+              <div>
+                <p>Public minting is live</p>
+                <ReactCountdown
+                  date={PUBLIC_LAUNCH_DATETIME.plus({ hours: 9 }).valueOf()}
+                  now={() => lastRecordedTime}
+                  renderer={({ hours, minutes, seconds }) => (
+                    <p>
+                      Public closes in
+                      <span className="tracking-wider text-green-300 font-mono ml-2">
+                        {hours ? `${hours}:` : null}
+                        {hours ? String(minutes).padStart(2, '0') : minutes}:
+                        {String(seconds).padStart(2, '0')}
+                      </span>
+                    </p>
+                  )}
+                />
+              </div>
+            )
           }
         }}
       />
